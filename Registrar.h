@@ -1,6 +1,7 @@
 #pragma once
-#include "LOGIN.h"
 #include "peliVAR.h"
+
+ref class Login;
 
 #include <msclr/marshal_cppstd.h>
 
@@ -24,13 +25,13 @@ namespace FACPelisVistas {
 		{
 			InitializeComponent();
 			//
-			//TODO: agregar código de constructor aquí
+			//TODO: agregar cï¿½digo de constructor aquï¿½
 			//
 		}
 
 	protected:
 		/// <summary>
-		/// Limpiar los recursos que se estén usando.
+		/// Limpiar los recursos que se estï¿½n usando.
 		/// </summary>
 		~Registrar()
 		{
@@ -88,14 +89,14 @@ namespace FACPelisVistas {
 
 	private:
 		/// <summary>
-		/// Variable del diseñador necesaria.
+		/// Variable del diseï¿½ador necesaria.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Método necesario para admitir el Diseñador. No se puede modificar
-		/// el contenido de este método con el editor de código.
+		/// Mï¿½todo necesario para admitir el Diseï¿½ador. No se puede modificar
+		/// el contenido de este mï¿½todo con el editor de cï¿½digo.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -457,9 +458,6 @@ namespace FACPelisVistas {
 
 		}
 	}
-private: System::Void atrBTN_Click(System::Object^ sender, System::EventArgs^ e) {
-	Login^ log = gcnew Login;
-	log->Show();
-}
-};
+	private: System::Void atrBTN_Click(System::Object^ sender, System::EventArgs^ e);
+	};
 }

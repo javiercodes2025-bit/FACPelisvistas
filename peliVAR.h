@@ -1,4 +1,4 @@
-
+#pragma once
 #include <string>
 #include <jdbc/cppconn/resultset.h>
 class conexionCls {
