@@ -1,0 +1,44 @@
+
+13/06...
+
+Clientes: 
+(select, Registrar(Pero con xd procedure... ), modificar, elimimar(Deshabilitar )   .... logicaMySQL tablas)
+
+Empleados: 
+SELECTOR, modificar(Al usar SELECTOR, no te deja modificar xd), elimimar(Deshabilitar ), ....
+(select, Registra(Con datos ya ingresados.. De registro), logicaMySQL tablas,
+ te faltaria de usar...  venta: fk_cliente INT,
+                                fk_empleado INT )
+
+Stock: 
+(  Select, Registrar, modificar, eliminar , logicaMySQL
+   tablas... Registrar:no tiene: Que  no se duplique)
+
+
+Registro: logicaMySQL tablas... 
+( select, Registrar,  .... elimimar(Deshabilitar)?) ACTUALIZANDO LA BDD: logicaMySQL tablas
+
+
+Proveedores:
+(  Select, eliminar, Registrar,modificar, logicaMySQL tablas..(Yy la otra tabla??peliculaXproveedor ))
+
+
+IniciarSecion:
+
+(para admins, empleados... Verificacion... un select a un dato...
+ Existe??
+ hacé esto
+ EMPLEADO EMP = new EMPLEADO();
+          EMP.setVisible(true); )
+
+Facturacion: ?
+(select, Registrar, eliminar, Modificar??, logicaMySQL tablas.)
+te faltaria de usar:
+ Stock: con su update..
+ peliculaXventa: fk_venta INT,
+                 fk_pelicula INT...
+ buscador Clientes(dni) cargar datos del cliente o sinCuenta...... 
+ buscador de productos(CodigoBarra)...
+
+
+ BDD: TABLA INTERMEDIAS Ej: direccionXpers
