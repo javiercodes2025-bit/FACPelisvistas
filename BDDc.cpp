@@ -59,7 +59,7 @@ void conexionCls::conectVoid() {
 			sql::mysql::get_mysql_driver_instance();
 		BDDins = driver->connect(BDD);
 		// NOMBRE  BDD
-		BDDins->setSchema("peliscpp");
+		BDDins->setSchema("sispelisC");
 
 		//if (BDDins && !BDDins->isClosed()) {}
 		std::cout << "Conexion exitosa" << std::endl;
@@ -77,7 +77,7 @@ void conexionCls::insertarPersona() {
 
 		if (!BDDins || BDDins->isClosed())
 			conectVoid();
-	
+
 		// INSERT PERSONA
 		sql::PreparedStatement* ps = BDDins->prepareStatement(
 
@@ -117,8 +117,8 @@ void conexionCls::insertarPersona() {
 			fk_perXtele = ? ,
 			fk_perXdir = ?
 			WHERE id_persona = ? ; */
-		//----------------------------------------------------------------------
-		// DOCUMENTO
+			//----------------------------------------------------------------------
+			// DOCUMENTO
 		sql::PreparedStatement* psDoc =
 			BDDins->prepareStatement(
 				"INSERT INTO documento(numero_documento, tipo) "
@@ -144,7 +144,7 @@ void conexionCls::insertarPersona() {
 		// PERSONA X DOCUMENTO
 		sql::PreparedStatement* psPerDoc =
 			BDDins->prepareStatement(
-				"INSERT INTO personaXdocumento(fk_persona, fk_documento) "
+				"INSERT INTO personaXdocumento(fk_empleado, fk_persona) "
 				"VALUES (?, ?)");
 
 		psPerDoc->setInt(1, idPersona);
