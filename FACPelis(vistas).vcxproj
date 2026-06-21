@@ -142,6 +142,7 @@
     <ClCompile Include="Clientes.cpp" />
     <ClCompile Include="Empleados.cpp" />
     <ClCompile Include="LOGIN.cpp" />
+    <ClCompile Include="PersonaBDD.cpp" />
     <ClCompile Include="PROVEEDORES.cpp" />
     <ClCompile Include="Registrar.cpp" />
     <ClCompile Include="Stock.cpp" />

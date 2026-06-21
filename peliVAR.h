@@ -1,6 +1,10 @@
 #pragma once
 #include <string>
 #include <jdbc/cppconn/resultset.h>
+#include <jdbc/cppconn/prepared_statement.h>
+
+extern sql::Connection* BDDins;
+extern sql::PreparedStatement* pstit;
 class conexionCls {
 private:
 
@@ -21,7 +25,6 @@ private:
     std::string calle;
     std::string numero;
     std::string ciudad;
-    std::string provincia;
 public:
 
     conexionCls(
@@ -39,9 +42,7 @@ public:
 
         std::string calle,
         std::string numero,
-        std::string ciudad,
-        std::string provincia
-
+        std::string ciudad
     );
 
     void insertarPersona();

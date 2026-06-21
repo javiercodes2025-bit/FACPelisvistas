@@ -1,6 +1,5 @@
 #pragma once
 #include "peliVAR.h"
-
 ref class Login;
 
 #include <msclr/marshal_cppstd.h>
@@ -101,11 +100,11 @@ namespace FACPelisVistas {
 	private: System::Windows::Forms::Label^ label10;
 	private: System::Windows::Forms::Label^ label11;
 	private: System::Windows::Forms::TextBox^ ciudTBX;
-	private: System::Windows::Forms::TextBox^ proTBX;
+
 
 
 	private: System::Windows::Forms::Label^ label12;
-	private: System::Windows::Forms::Label^ label13;
+
 	private: System::Windows::Forms::ComboBox^ tipoCBOX;
 	private: System::Windows::Forms::ComboBox^ rolCBOX;
 
@@ -149,9 +148,7 @@ namespace FACPelisVistas {
 			this->label10 = (gcnew System::Windows::Forms::Label());
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->ciudTBX = (gcnew System::Windows::Forms::TextBox());
-			this->proTBX = (gcnew System::Windows::Forms::TextBox());
 			this->label12 = (gcnew System::Windows::Forms::Label());
-			this->label13 = (gcnew System::Windows::Forms::Label());
 			this->tipoCBOX = (gcnew System::Windows::Forms::ComboBox());
 			this->rolCBOX = (gcnew System::Windows::Forms::ComboBox());
 			this->SuspendLayout();
@@ -338,13 +335,6 @@ namespace FACPelisVistas {
 			this->ciudTBX->Size = System::Drawing::Size(315, 20);
 			this->ciudTBX->TabIndex = 26;
 			// 
-			// proTBX
-			// 
-			this->proTBX->Location = System::Drawing::Point(383, 313);
-			this->proTBX->Name = L"proTBX";
-			this->proTBX->Size = System::Drawing::Size(315, 20);
-			this->proTBX->TabIndex = 25;
-			// 
 			// label12
 			// 
 			this->label12->AutoSize = true;
@@ -353,15 +343,6 @@ namespace FACPelisVistas {
 			this->label12->Size = System::Drawing::Size(40, 13);
 			this->label12->TabIndex = 24;
 			this->label12->Text = L"Ciudad";
-			// 
-			// label13
-			// 
-			this->label13->AutoSize = true;
-			this->label13->Location = System::Drawing::Point(380, 297);
-			this->label13->Name = L"label13";
-			this->label13->Size = System::Drawing::Size(51, 13);
-			this->label13->TabIndex = 23;
-			this->label13->Text = L"Provincia";
 			// 
 			// tipoCBOX
 			// 
@@ -386,9 +367,7 @@ namespace FACPelisVistas {
 			this->ClientSize = System::Drawing::Size(767, 478);
 			this->Controls->Add(this->rolCBOX);
 			this->Controls->Add(this->ciudTBX);
-			this->Controls->Add(this->proTBX);
 			this->Controls->Add(this->label12);
-			this->Controls->Add(this->label13);
 			this->Controls->Add(this->calleTBX);
 			this->Controls->Add(this->numCTBX);
 			this->Controls->Add(this->label10);
@@ -460,9 +439,6 @@ namespace FACPelisVistas {
 			std::string ciudad =
 				msclr::interop::marshal_as<std::string>(ciudTBX->Text);
 
-			std::string provincia =
-				msclr::interop::marshal_as<std::string>(proTBX->Text);
-
 			conexionCls* con = new conexionCls(
 				nombre,
 				apellido,
@@ -474,8 +450,7 @@ namespace FACPelisVistas {
 				telefono,
 				calle,
 				numero,
-				ciudad,
-				provincia
+				ciudad
 			);
 
 			con->conectVoid();
@@ -496,7 +471,7 @@ namespace FACPelisVistas {
 			calleTBX->Text = L"";
 			numCTBX->Text = L"";
 			ciudTBX->Text = L"";
-			proTBX->Text = L"";
+		
 
 		}
 		catch (Exception^ ex) {
@@ -506,10 +481,6 @@ namespace FACPelisVistas {
 		}
 	}
 	private: System::Void atrBTN_Click(System::Object^ sender, System::EventArgs^ e);
-
-
-
-
 
 	};
 }
