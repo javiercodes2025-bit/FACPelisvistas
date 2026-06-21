@@ -23,10 +23,35 @@ namespace FACPelisVistas {
 	public:
 		Registrar(void)
 		{
-			InitializeComponent();
-			//
-			//TODO: agregar c�digo de constructor aqu�
-			//
+		InitializeComponent();
+		//
+		//TODO: agregar c�digo de constructor aqu�
+		//
+		cli::array<System::Object^>^ tipoItems = {
+			L"ELEGIR:",
+			L"DNI",
+			L"CUIL",
+			L"Pasaporte Electrónico"
+		};
+
+		this->tipoCBOX->Items->AddRange(tipoItems);
+		this->tipoCBOX->SelectedIndex = 0;
+
+		this->tipoCBOX->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+
+		cli::array<System::Object^>^ ROL = {
+			L"ELEGIR:",
+			L"CLIENTE",
+			L"EMPLEADO",
+			L"ADMINISTRADOR"
+		};
+
+		this->rolCBOX->Items->AddRange(ROL);
+		this->rolCBOX->SelectedIndex = 0;
+
+		this->rolCBOX->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+
+		
 		}
 
 	protected:
@@ -58,12 +83,11 @@ namespace FACPelisVistas {
 
 
 	private: System::Windows::Forms::TextBox^ passTBX;
-	private: System::Windows::Forms::TextBox^ rolTBX;
+
 
 
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::TextBox^ NumDoTBX;
-	private: System::Windows::Forms::TextBox^ TiDocTBX;
 
 
 
@@ -82,6 +106,9 @@ namespace FACPelisVistas {
 
 	private: System::Windows::Forms::Label^ label12;
 	private: System::Windows::Forms::Label^ label13;
+	private: System::Windows::Forms::ComboBox^ tipoCBOX;
+	private: System::Windows::Forms::ComboBox^ rolCBOX;
+
 	protected:
 
 	protected:
@@ -113,10 +140,8 @@ namespace FACPelisVistas {
 			this->telefTBX = (gcnew System::Windows::Forms::TextBox());
 			this->emailTBX = (gcnew System::Windows::Forms::TextBox());
 			this->passTBX = (gcnew System::Windows::Forms::TextBox());
-			this->rolTBX = (gcnew System::Windows::Forms::TextBox());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->NumDoTBX = (gcnew System::Windows::Forms::TextBox());
-			this->TiDocTBX = (gcnew System::Windows::Forms::TextBox());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->calleTBX = (gcnew System::Windows::Forms::TextBox());
@@ -127,6 +152,8 @@ namespace FACPelisVistas {
 			this->proTBX = (gcnew System::Windows::Forms::TextBox());
 			this->label12 = (gcnew System::Windows::Forms::Label());
 			this->label13 = (gcnew System::Windows::Forms::Label());
+			this->tipoCBOX = (gcnew System::Windows::Forms::ComboBox());
+			this->rolCBOX = (gcnew System::Windows::Forms::ComboBox());
 			this->SuspendLayout();
 			// 
 			// regBTN
@@ -238,13 +265,6 @@ namespace FACPelisVistas {
 			this->passTBX->Size = System::Drawing::Size(315, 20);
 			this->passTBX->TabIndex = 12;
 			// 
-			// rolTBX
-			// 
-			this->rolTBX->Location = System::Drawing::Point(28, 182);
-			this->rolTBX->Name = L"rolTBX";
-			this->rolTBX->Size = System::Drawing::Size(315, 20);
-			this->rolTBX->TabIndex = 13;
-			// 
 			// label7
 			// 
 			this->label7->AutoSize = true;
@@ -260,13 +280,6 @@ namespace FACPelisVistas {
 			this->NumDoTBX->Name = L"NumDoTBX";
 			this->NumDoTBX->Size = System::Drawing::Size(315, 20);
 			this->NumDoTBX->TabIndex = 15;
-			// 
-			// TiDocTBX
-			// 
-			this->TiDocTBX->Location = System::Drawing::Point(383, 101);
-			this->TiDocTBX->Name = L"TiDocTBX";
-			this->TiDocTBX->Size = System::Drawing::Size(315, 20);
-			this->TiDocTBX->TabIndex = 16;
 			// 
 			// label8
 			// 
@@ -350,11 +363,28 @@ namespace FACPelisVistas {
 			this->label13->TabIndex = 23;
 			this->label13->Text = L"Provincia";
 			// 
+			// tipoCBOX
+			// 
+			this->tipoCBOX->FormattingEnabled = true;
+			this->tipoCBOX->Location = System::Drawing::Point(383, 101);
+			this->tipoCBOX->Name = L"tipoCBOX";
+			this->tipoCBOX->Size = System::Drawing::Size(315, 21);
+			this->tipoCBOX->TabIndex = 27;
+			// 
+			// rolCBOX
+			// 
+			this->rolCBOX->FormattingEnabled = true;
+			this->rolCBOX->Location = System::Drawing::Point(28, 183);
+			this->rolCBOX->Name = L"rolCBOX";
+			this->rolCBOX->Size = System::Drawing::Size(315, 21);
+			this->rolCBOX->TabIndex = 28;
+			// 
 			// Registrar
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(767, 478);
+			this->Controls->Add(this->rolCBOX);
 			this->Controls->Add(this->ciudTBX);
 			this->Controls->Add(this->proTBX);
 			this->Controls->Add(this->label12);
@@ -365,10 +395,9 @@ namespace FACPelisVistas {
 			this->Controls->Add(this->label11);
 			this->Controls->Add(this->label9);
 			this->Controls->Add(this->label8);
-			this->Controls->Add(this->TiDocTBX);
+			this->Controls->Add(this->tipoCBOX);
 			this->Controls->Add(this->NumDoTBX);
 			this->Controls->Add(this->label7);
-			this->Controls->Add(this->rolTBX);
 			this->Controls->Add(this->passTBX);
 			this->Controls->Add(this->emailTBX);
 			this->Controls->Add(this->telefTBX);
@@ -391,6 +420,11 @@ namespace FACPelisVistas {
 #pragma endregion
 	private: System::Void regBTN_Click(System::Object^ sender, System::EventArgs^ e) {
 
+		if (tipoCBOX->SelectedIndex == 0 || rolCBOX->SelectedIndex == 0) {
+			MessageBox::Show("Seleccione un tipo de documento y un rol validos");
+			return;
+		}
+
 		try {
 
 			std::string nombre =
@@ -403,13 +437,13 @@ namespace FACPelisVistas {
 				msclr::interop::marshal_as<std::string>(passTBX->Text);
 
 			std::string rol =
-				msclr::interop::marshal_as<std::string>(rolTBX->Text);
+				msclr::interop::marshal_as<std::string>(rolCBOX->Text);
 
 			std::string numeroDocumento =
 				msclr::interop::marshal_as<std::string>(NumDoTBX->Text);
 
 			std::string tipoDocumento =
-				msclr::interop::marshal_as<std::string>(TiDocTBX->Text);
+				msclr::interop::marshal_as<std::string>(tipoCBOX->Text);
 
 			std::string correo =
 				msclr::interop::marshal_as<std::string>(emailTBX->Text);
@@ -449,7 +483,20 @@ namespace FACPelisVistas {
 
 			delete con;
 
-			MessageBox::Show("Persona registrada");
+			//MessageBox::Show("Persona registrada");
+
+			nomTBX->Text = L"";
+			apeTBX->Text = L"";
+			passTBX->Text = L"";
+			rolCBOX->SelectedIndex = 0;
+			NumDoTBX->Text = L"";
+			tipoCBOX->SelectedIndex = 0;
+			emailTBX->Text = L"";
+			telefTBX->Text = L"";
+			calleTBX->Text = L"";
+			numCTBX->Text = L"";
+			ciudTBX->Text = L"";
+			proTBX->Text = L"";
 
 		}
 		catch (Exception^ ex) {
@@ -459,5 +506,10 @@ namespace FACPelisVistas {
 		}
 	}
 	private: System::Void atrBTN_Click(System::Object^ sender, System::EventArgs^ e);
+
+
+
+
+
 	};
 }

@@ -145,12 +145,14 @@ namespace FACPelisVistas {
 	private: System::Void ingBTN_Click(System::Object^ sender, System::EventArgs^ e) {
 		/* Select.. A  nombre + pass con un Where a rol... */
 		EMPLEADOS^ emp = gcnew EMPLEADOS;
+		this->Hide();
 		emp->Show();
 	}
 
 
 	private: System::Void resBTN_Click(System::Object^ sender, System::EventArgs^ e) {
 		Registrar^ res = gcnew Registrar;
+		this->Hide();
 		res->Show();
 	}
 	};
