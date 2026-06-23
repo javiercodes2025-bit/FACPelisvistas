@@ -13,10 +13,10 @@
 
 documento
 email
-tel�fono
-direcci�n
+telefono
+direccion
 
-porque ah� ya vas a necesitar 5 INSERT m�s y varios LAST_INSERT_ID().
+porque ahi ya vas a necesitar 5 INSERT m�s y varios LAST_INSERT_ID().
 */
 
 conexionCls::conexionCls(std::string nombreT, std::string apellidoT, std::string passwordT, std::string  rolT, std::string  numeroDocumentoT, std::string  tipoDocumentoT,

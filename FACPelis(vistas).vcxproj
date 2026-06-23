@@ -139,7 +139,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BDDc.cpp" />
+    <ClCompile Include="ClienteBDD.cpp" />
     <ClCompile Include="Clientes.cpp" />
+    <ClCompile Include="EmpleadoBDD.cpp" />
     <ClCompile Include="Empleados.cpp" />
     <ClCompile Include="LOGIN.cpp" />
     <ClCompile Include="PersonaBDD.cpp" />
