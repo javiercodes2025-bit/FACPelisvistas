@@ -2,6 +2,7 @@
 #include "Clientes.h"
 #include "Empleados.h"
 #include "PROVEEDORES.h"
+#include "FACTURACION.h"
 
 void FACPelisVistas::STOCK::cliBTN_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Hide();
@@ -19,5 +20,10 @@ void FACPelisVistas::STOCK::provBTN_Click(System::Object^ sender, System::EventA
 	this->Hide();
 	PROVEEDORES^ prov = gcnew PROVEEDORES;
 	prov->Show();
+}
+void FACPelisVistas::STOCK::facBTN_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Hide();
+	FACPelisvistas::FACTURACION^ fac = gcnew FACPelisvistas::FACTURACION;
+	fac->Show();
 }
 

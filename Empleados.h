@@ -406,8 +406,7 @@ private: System::Windows::Forms::Button^ cerrarBTNEMP;
 
 		}
 #pragma endregion
-	private: System::Void facBTN_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
+	private: System::Void facBTN_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void cliBTN_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void provBTN_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void stockBTN_Click(System::Object^ sender, System::EventArgs^ e);

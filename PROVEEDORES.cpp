@@ -2,6 +2,7 @@
 #include "CLIENTES.h"
 #include "Empleados.h"
 #include "Stock.h"
+#include "FACTURACION.h"
 
 void FACPelisVistas::PROVEEDORES::stockBTN_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Hide();
@@ -129,4 +130,9 @@ void FACPelisVistas::PROVEEDORES::codigobarraTXB_KeyPress(System::Object^ sender
 	if (!Char::IsDigit(e->KeyChar) && e->KeyChar != 8) {
 		e->Handled = true;
 	}
+}
+void FACPelisVistas::PROVEEDORES::facBTN_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Hide();
+	FACPelisvistas::FACTURACION^ fac = gcnew FACPelisvistas::FACTURACION;
+	fac->Show();
 }

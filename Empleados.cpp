@@ -3,6 +3,7 @@
 #include "CLIENTES.h"
 #include "Stock.h"
 #include "PROVEEDORES.h"
+#include "FACTURACION.h"
 
 void FACPelisVistas::EMPLEADOS::cerrarBTNEMP_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Hide();
@@ -26,5 +27,10 @@ void FACPelisVistas::EMPLEADOS::provBTN_Click(System::Object^ sender, System::Ev
 	this->Hide();
 	PROVEEDORES^ prov = gcnew PROVEEDORES;
 	prov->Show();
+}
+void FACPelisVistas::EMPLEADOS::facBTN_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Hide();
+	FACPelisvistas::FACTURACION^ fac = gcnew FACPelisvistas::FACTURACION;
+	fac->Show();
 }
 

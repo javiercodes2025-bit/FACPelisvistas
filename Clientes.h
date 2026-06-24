@@ -518,8 +518,7 @@ namespace FACPelisVistas {
 
 		}
 #pragma endregion
-	private: System::Void facBTN_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
+	private: System::Void facBTN_Click(System::Object^ sender, System::EventArgs^ e);
 
 	private: System::Void stockBTN_Click(System::Object^ sender, System::EventArgs^ e);
 
