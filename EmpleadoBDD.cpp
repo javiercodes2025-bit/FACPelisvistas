@@ -20,7 +20,7 @@ void cargarEmpleados(DataGridView^ grid) {
         }
 
         sql::PreparedStatement* ps = BDDins->prepareStatement(
-            "SELECT p.id_persona, p.nombre, p.apellido, "
+            "SELECT p.id_persona, p.nombre, p.apellido, p.rol, "
             "doc.numero_documento, "
             "e.correo, "
             "t.numero AS telefono, "
@@ -33,7 +33,7 @@ void cargarEmpleados(DataGridView^ grid) {
             "LEFT JOIN personaXtelefonos pt ON p.id_persona = pt.fk_persona "
             "LEFT JOIN telefonos t ON pt.fk_telefono = t.id_telefono "
             "LEFT JOIN empleado emp ON p.id_persona = emp.fk_persona "
-            "WHERE p.rol = 'EMPLEADO' AND p.habilitado = 1 "
+            "WHERE (p.rol = 'EMPLEADO' OR p.rol = 'ADMINISTRADOR') AND p.habilitado = 1 "
             "ORDER BY p.id_persona"
         );
 
@@ -44,6 +44,7 @@ void cargarEmpleados(DataGridView^ grid) {
         table->Columns->Add("ID", Int32::typeid);
         table->Columns->Add("Nombre", String::typeid);
         table->Columns->Add("Apellido", String::typeid);
+        table->Columns->Add("Rol", String::typeid);
         table->Columns->Add("NumDocumento", String::typeid);
         table->Columns->Add("Email", String::typeid);
         table->Columns->Add("Telefono", String::typeid);
@@ -57,6 +58,7 @@ void cargarEmpleados(DataGridView^ grid) {
             row["ID"] = rs->getInt("id_persona");
             row["Nombre"] = gcnew String(rs->getString("nombre").c_str());
             row["Apellido"] = gcnew String(rs->getString("apellido").c_str());
+            row["Rol"] = gcnew String(rs->getString("rol").c_str());
             if (rs->isNull("numero_documento"))
                 row["NumDocumento"] = String::Empty;
             else

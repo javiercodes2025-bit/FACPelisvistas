@@ -459,6 +459,11 @@ private: System::Windows::Forms::Button^ cerrarBTNEMP;
 				return;
 			}
 			int idPersona = (int)table1->SelectedRows[0]->Cells["ID"]->Value;
+			String^ rol = table1->SelectedRows[0]->Cells["Rol"]->Value->ToString();
+			if (rol == "ADMINISTRADOR") {
+				MessageBox::Show("No se puede eliminar un administrador");
+				return;
+			}
 			auto result = MessageBox::Show("¿Deshabilitar este empleado?", "Confirmar", MessageBoxButtons::YesNo);
 			if (result == System::Windows::Forms::DialogResult::Yes) {
 				eliminarPersona(idPersona);

@@ -1,6 +1,7 @@
 #pragma once
 #include "peliVAR.h"
 ref class Login;
+void cargarAdministradores(System::Windows::Forms::DataGridView^ grid);
 
 #include <msclr/marshal_cppstd.h>
 
@@ -50,7 +51,7 @@ namespace FACPelisVistas {
 
 		this->rolCBOX->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 
-		
+		cargarAdministradores(dataGridView1);
 		}
 
 	protected:
@@ -107,6 +108,8 @@ namespace FACPelisVistas {
 
 	private: System::Windows::Forms::ComboBox^ tipoCBOX;
 	private: System::Windows::Forms::ComboBox^ rolCBOX;
+	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	private: System::Windows::Forms::Button^ modificarTBX;
 
 	protected:
 
@@ -151,11 +154,14 @@ namespace FACPelisVistas {
 			this->label12 = (gcnew System::Windows::Forms::Label());
 			this->tipoCBOX = (gcnew System::Windows::Forms::ComboBox());
 			this->rolCBOX = (gcnew System::Windows::Forms::ComboBox());
+			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->modificarTBX = (gcnew System::Windows::Forms::Button());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// regBTN
 			// 
-			this->regBTN->Location = System::Drawing::Point(101, 414);
+			this->regBTN->Location = System::Drawing::Point(27, 379);
 			this->regBTN->Name = L"regBTN";
 			this->regBTN->Size = System::Drawing::Size(350, 23);
 			this->regBTN->TabIndex = 0;
@@ -165,7 +171,7 @@ namespace FACPelisVistas {
 			// 
 			// atrBTN
 			// 
-			this->atrBTN->Location = System::Drawing::Point(457, 414);
+			this->atrBTN->Location = System::Drawing::Point(383, 379);
 			this->atrBTN->Name = L"atrBTN";
 			this->atrBTN->Size = System::Drawing::Size(153, 23);
 			this->atrBTN->TabIndex = 1;
@@ -360,11 +366,30 @@ namespace FACPelisVistas {
 			this->rolCBOX->Size = System::Drawing::Size(315, 21);
 			this->rolCBOX->TabIndex = 28;
 			// 
+			// dataGridView1
+			// 
+			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView1->Location = System::Drawing::Point(12, 423);
+			this->dataGridView1->Name = L"dataGridView1";
+			this->dataGridView1->Size = System::Drawing::Size(743, 154);
+			this->dataGridView1->TabIndex = 29;
+			// 
+			// modificarTBX
+			// 
+			this->modificarTBX->Location = System::Drawing::Point(543, 379);
+			this->modificarTBX->Name = L"modificarTBX";
+			this->modificarTBX->Size = System::Drawing::Size(155, 22);
+			this->modificarTBX->TabIndex = 30;
+			this->modificarTBX->Text = L"Modificar";
+			this->modificarTBX->UseVisualStyleBackColor = true;
+			// 
 			// Registrar
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(767, 478);
+			this->ClientSize = System::Drawing::Size(767, 589);
+			this->Controls->Add(this->modificarTBX);
+			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->rolCBOX);
 			this->Controls->Add(this->ciudTBX);
 			this->Controls->Add(this->label12);
@@ -392,6 +417,7 @@ namespace FACPelisVistas {
 			this->Controls->Add(this->regBTN);
 			this->Name = L"Registrar";
 			this->Text = L"Registrar";
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
