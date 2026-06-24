@@ -57,6 +57,15 @@ namespace FACPelisvistas {
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::TextBox^ descuentoXproducBTX;
+	private: System::Windows::Forms::TextBox^ cantidadTBX;
+	private: System::Windows::Forms::TextBox^ descuentoGENERAL;
+	private: System::Windows::Forms::Button^ calcularBTN;
+	private: System::Windows::Forms::Label^ label7;
+	private: System::Windows::Forms::Label^ label8;
+	private: System::Windows::Forms::TextBox^ subtotalTBX;
+	private: System::Windows::Forms::Label^ label9;
+	private: System::Windows::Forms::TextBox^ totalTBX;
+	private: System::Windows::Forms::Label^ label10;
 
 
 
@@ -98,6 +107,15 @@ namespace FACPelisvistas {
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->descuentoXproducBTX = (gcnew System::Windows::Forms::TextBox());
+			this->cantidadTBX = (gcnew System::Windows::Forms::TextBox());
+			this->descuentoGENERAL = (gcnew System::Windows::Forms::TextBox());
+			this->calcularBTN = (gcnew System::Windows::Forms::Button());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->subtotalTBX = (gcnew System::Windows::Forms::TextBox());
+			this->label9 = (gcnew System::Windows::Forms::Label());
+			this->totalTBX = (gcnew System::Windows::Forms::TextBox());
+			this->label10 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -223,6 +241,7 @@ namespace FACPelisvistas {
 			// 
 			this->stockTBX->Location = System::Drawing::Point(29, 249);
 			this->stockTBX->Name = L"stockTBX";
+			this->stockTBX->ReadOnly = true;
 			this->stockTBX->Size = System::Drawing::Size(255, 20);
 			this->stockTBX->TabIndex = 13;
 			// 
@@ -248,6 +267,7 @@ namespace FACPelisvistas {
 			// 
 			this->precioTBX->Location = System::Drawing::Point(29, 292);
 			this->precioTBX->Name = L"precioTBX";
+			this->precioTBX->ReadOnly = true;
 			this->precioTBX->Size = System::Drawing::Size(255, 20);
 			this->precioTBX->TabIndex = 16;
 			// 
@@ -255,6 +275,7 @@ namespace FACPelisvistas {
 			// 
 			this->nombrepeliTBX->Location = System::Drawing::Point(32, 413);
 			this->nombrepeliTBX->Name = L"nombrepeliTBX";
+			this->nombrepeliTBX->ReadOnly = true;
 			this->nombrepeliTBX->Size = System::Drawing::Size(252, 20);
 			this->nombrepeliTBX->TabIndex = 17;
 			// 
@@ -283,6 +304,82 @@ namespace FACPelisvistas {
 			this->descuentoXproducBTX->Size = System::Drawing::Size(255, 20);
 			this->descuentoXproducBTX->TabIndex = 20;
 			// 
+			// cantidadTBX
+			// 
+			this->cantidadTBX->Location = System::Drawing::Point(35, 458);
+			this->cantidadTBX->Name = L"cantidadTBX";
+			this->cantidadTBX->Size = System::Drawing::Size(255, 20);
+			this->cantidadTBX->TabIndex = 21;
+			// 
+			// descuentoGENERAL
+			// 
+			this->descuentoGENERAL->Location = System::Drawing::Point(606, 402);
+			this->descuentoGENERAL->Name = L"descuentoGENERAL";
+			this->descuentoGENERAL->Size = System::Drawing::Size(255, 20);
+			this->descuentoGENERAL->TabIndex = 23;
+			// 
+			// calcularBTN
+			// 
+			this->calcularBTN->Location = System::Drawing::Point(692, 468);
+			this->calcularBTN->Name = L"calcularBTN";
+			this->calcularBTN->Size = System::Drawing::Size(99, 23);
+			this->calcularBTN->TabIndex = 29;
+			this->calcularBTN->Text = L"CALCULAR";
+			this->calcularBTN->UseVisualStyleBackColor = true;
+			this->calcularBTN->Click += gcnew System::EventHandler(this, &FACTURACION::calcularBTN_Click);
+			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(35, 442);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(62, 13);
+			this->label7->TabIndex = 22;
+			this->label7->Text = L"CANTIDAD";
+			// 
+			// label8
+			// 
+			this->label8->AutoSize = true;
+			this->label8->Location = System::Drawing::Point(606, 386);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(74, 13);
+			this->label8->TabIndex = 24;
+			this->label8->Text = L"DESCUENTO";
+			// 
+			// subtotalTBX
+			// 
+			this->subtotalTBX->Location = System::Drawing::Point(606, 442);
+			this->subtotalTBX->Name = L"subtotalTBX";
+			this->subtotalTBX->ReadOnly = true;
+			this->subtotalTBX->Size = System::Drawing::Size(255, 20);
+			this->subtotalTBX->TabIndex = 25;
+			// 
+			// label9
+			// 
+			this->label9->AutoSize = true;
+			this->label9->Location = System::Drawing::Point(606, 426);
+			this->label9->Name = L"label9";
+			this->label9->Size = System::Drawing::Size(64, 13);
+			this->label9->TabIndex = 26;
+			this->label9->Text = L"SUBTOTAL";
+			// 
+			// totalTBX
+			// 
+			this->totalTBX->Location = System::Drawing::Point(609, 512);
+			this->totalTBX->Name = L"totalTBX";
+			this->totalTBX->ReadOnly = true;
+			this->totalTBX->Size = System::Drawing::Size(255, 20);
+			this->totalTBX->TabIndex = 27;
+			// 
+			// label10
+			// 
+			this->label10->AutoSize = true;
+			this->label10->Location = System::Drawing::Point(609, 496);
+			this->label10->Name = L"label10";
+			this->label10->Size = System::Drawing::Size(42, 13);
+			this->label10->TabIndex = 28;
+			this->label10->Text = L"TOTAL";
+			// 
 			// FACTURACION
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -309,6 +406,15 @@ namespace FACPelisvistas {
 			this->Controls->Add(this->proveedoresBTN);
 			this->Controls->Add(this->empleadosBTN);
 			this->Controls->Add(this->clienteBTN);
+			this->Controls->Add(this->label7);
+			this->Controls->Add(this->cantidadTBX);
+			this->Controls->Add(this->label8);
+			this->Controls->Add(this->descuentoGENERAL);
+			this->Controls->Add(this->calcularBTN);
+			this->Controls->Add(this->label9);
+			this->Controls->Add(this->subtotalTBX);
+			this->Controls->Add(this->label10);
+			this->Controls->Add(this->totalTBX);
 			this->Name = L"FACTURACION";
 			this->Text = L"FACTURACION";
 			this->Load += gcnew System::EventHandler(this, &FACTURACION::FACTURACION_Load);
@@ -328,5 +434,6 @@ private: System::Void clienteBTN_Click(System::Object^ sender, System::EventArgs
 private: System::Void stockBTN_Click(System::Object^ sender, System::EventArgs^ e);
 private: System::Void buscadorClienteBTN_Click(System::Object^ sender, System::EventArgs^ e);
 private: System::Void buscarProBTN_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void calcularBTN_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }

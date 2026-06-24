@@ -107,4 +107,52 @@ void FACPelisvistas::FACTURACION::buscarProBTN_Click(System::Object^ sender, Sys
 		MessageBox::Show(gcnew String(ex.what()));
 	}
 }
+void FACPelisvistas::FACTURACION::calcularBTN_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (String::IsNullOrWhiteSpace(cantidadTBX->Text) ||
+		String::IsNullOrWhiteSpace(precioTBX->Text) ||
+		String::IsNullOrWhiteSpace(stockTBX->Text)) return;
+	try {
+		double precio = Double::Parse(precioTBX->Text);
+		int cantidad = Int32::Parse(cantidadTBX->Text);
+		int stock = Int32::Parse(stockTBX->Text);
+
+		if (cantidad <= 0) {
+			MessageBox::Show("La cantidad debe ser mayor a 0");
+			return;
+		}
+		if (cantidad > stock) {
+			MessageBox::Show("Stock insuficiente. Disponible: " + stock);
+			return;
+		}
+
+		double descProducto = 0;
+		double descuento = 0;
+
+		if (!String::IsNullOrWhiteSpace(descuentoXproducBTX->Text)) {
+			descProducto = Double::Parse(descuentoXproducBTX->Text);
+			if (descProducto < 0 || descProducto > 100) {
+				MessageBox::Show("El descuentoXproducto debe estar entre 0 y 100");
+				return;
+			}
+		}
+
+		if (!String::IsNullOrWhiteSpace(descuentoGENERAL->Text)) {
+			descuento = Double::Parse(descuentoGENERAL->Text);
+			if (descuento < 0 || descuento > 100) {
+				MessageBox::Show("El descuento debe estar entre 0 y 100");
+				return;
+			}
+		}
+
+		double subtotal = precio * cantidad;
+		subtotal = subtotal - (subtotal * descProducto / 100.0);
+		double total = subtotal - (subtotal * descuento / 100.0);
+
+		subtotalTBX->Text = subtotal.ToString();
+		totalTBX->Text = total.ToString();
+	}
+	catch (Exception^) {
+		MessageBox::Show("Ingrese un numero valido...");
+	}
+}
 
