@@ -83,7 +83,20 @@ namespace FACPelisVistas {
 
 
 	private: System::Windows::Forms::DataGridView^ table1;
-	
+	private: System::Windows::Forms::Label^ CodigoBarra;
+
+	private: System::Windows::Forms::Label^ label7;
+	private: System::Windows::Forms::Label^ NOMBRE;
+	private: System::Windows::Forms::Label^ label9;
+	private: System::Windows::Forms::TextBox^ codigobarraTXB;
+	private: System::Windows::Forms::TextBox^ pelinombreTXB;
+	private: System::Windows::Forms::TextBox^ peliANIOTBX;
+	private: System::Windows::Forms::TextBox^ peliduracionTBX;
+	private: System::Windows::Forms::Button^ buscadorTBX;
+
+
+
+
 
 
 
@@ -129,6 +142,15 @@ namespace FACPelisVistas {
 			this->gmailTBX = (gcnew System::Windows::Forms::TextBox());
 			this->table1 = (gcnew System::Windows::Forms::DataGridView());
 			this->emplBTN = (gcnew System::Windows::Forms::Button());
+			this->CodigoBarra = (gcnew System::Windows::Forms::Label());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->NOMBRE = (gcnew System::Windows::Forms::Label());
+			this->label9 = (gcnew System::Windows::Forms::Label());
+			this->codigobarraTXB = (gcnew System::Windows::Forms::TextBox());
+			this->pelinombreTXB = (gcnew System::Windows::Forms::TextBox());
+			this->peliANIOTBX = (gcnew System::Windows::Forms::TextBox());
+			this->peliduracionTBX = (gcnew System::Windows::Forms::TextBox());
+			this->buscadorTBX = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->table1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -164,7 +186,7 @@ namespace FACPelisVistas {
 			// 
 			// ingrBTN
 			// 
-			this->ingrBTN->Location = System::Drawing::Point(621, 165);
+			this->ingrBTN->Location = System::Drawing::Point(621, 216);
 			this->ingrBTN->Name = L"ingrBTN";
 			this->ingrBTN->Size = System::Drawing::Size(120, 29);
 			this->ingrBTN->TabIndex = 4;
@@ -174,7 +196,7 @@ namespace FACPelisVistas {
 			// 
 			// eliBTN
 			// 
-			this->eliBTN->Location = System::Drawing::Point(621, 200);
+			this->eliBTN->Location = System::Drawing::Point(621, 251);
 			this->eliBTN->Name = L"eliBTN";
 			this->eliBTN->Size = System::Drawing::Size(118, 25);
 			this->eliBTN->TabIndex = 5;
@@ -184,7 +206,7 @@ namespace FACPelisVistas {
 			// 
 			// modiBTN
 			// 
-			this->modiBTN->Location = System::Drawing::Point(621, 231);
+			this->modiBTN->Location = System::Drawing::Point(621, 282);
 			this->modiBTN->Name = L"modiBTN";
 			this->modiBTN->Size = System::Drawing::Size(120, 25);
 			this->modiBTN->TabIndex = 6;
@@ -294,11 +316,97 @@ namespace FACPelisVistas {
 			this->emplBTN->UseVisualStyleBackColor = true;
 			this->emplBTN->Click += gcnew System::EventHandler(this, &PROVEEDORES::emplBTN_Click);
 			// 
+			// CodigoBarra
+			// 
+			this->CodigoBarra->AutoSize = true;
+			this->CodigoBarra->Location = System::Drawing::Point(36, 71);
+			this->CodigoBarra->Name = L"CodigoBarra";
+			this->CodigoBarra->Size = System::Drawing::Size(65, 13);
+			this->CodigoBarra->TabIndex = 24;
+			this->CodigoBarra->Text = L"CodigoBarra";
+			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(446, 116);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(64, 13);
+			this->label7->TabIndex = 25;
+			this->label7->Text = L"DURACION";
+			// 
+			// NOMBRE
+			// 
+			this->NOMBRE->AutoSize = true;
+			this->NOMBRE->Location = System::Drawing::Point(36, 116);
+			this->NOMBRE->Name = L"NOMBRE";
+			this->NOMBRE->Size = System::Drawing::Size(54, 13);
+			this->NOMBRE->TabIndex = 26;
+			this->NOMBRE->Text = L"NOMBRE";
+			// 
+			// label9
+			// 
+			this->label9->AutoSize = true;
+			this->label9->Location = System::Drawing::Point(300, 116);
+			this->label9->Name = L"label9";
+			this->label9->Size = System::Drawing::Size(33, 13);
+			this->label9->TabIndex = 27;
+			this->label9->Text = L"ANIO";
+			// 
+			// codigobarraTXB
+			// 
+			this->codigobarraTXB->Location = System::Drawing::Point(39, 87);
+			this->codigobarraTXB->Name = L"codigobarraTXB";
+			this->codigobarraTXB->Size = System::Drawing::Size(253, 20);
+			this->codigobarraTXB->TabIndex = 28;
+			// 
+			// pelinombreTXB
+			// 
+			this->pelinombreTXB->Location = System::Drawing::Point(39, 133);
+			this->pelinombreTXB->Name = L"pelinombreTXB";
+			this->pelinombreTXB->Size = System::Drawing::Size(253, 20);
+			this->pelinombreTXB->TabIndex = 29;
+			this->pelinombreTXB->ReadOnly = true;
+			// 
+			// peliANIOTBX
+			// 
+			this->peliANIOTBX->Location = System::Drawing::Point(303, 132);
+			this->peliANIOTBX->Name = L"peliANIOTBX";
+			this->peliANIOTBX->Size = System::Drawing::Size(135, 20);
+			this->peliANIOTBX->TabIndex = 30;
+			this->peliANIOTBX->ReadOnly = true;
+			// 
+			// peliduracionTBX
+			// 
+			this->peliduracionTBX->Location = System::Drawing::Point(449, 132);
+			this->peliduracionTBX->Name = L"peliduracionTBX";
+			this->peliduracionTBX->Size = System::Drawing::Size(114, 20);
+			this->peliduracionTBX->TabIndex = 31;
+			this->peliduracionTBX->ReadOnly = true;
+			// 
+			// buscadorTBX
+			// 
+			this->buscadorTBX->Location = System::Drawing::Point(621, 129);
+			this->buscadorTBX->Name = L"buscadorTBX";
+			this->buscadorTBX->Size = System::Drawing::Size(126, 23);
+			this->buscadorTBX->TabIndex = 32;
+			this->buscadorTBX->Text = L"BUSCAR";
+			this->buscadorTBX->UseVisualStyleBackColor = true;
+			this->buscadorTBX->Click += gcnew System::EventHandler(this, &PROVEEDORES::buscadorTBX_Click);
+			// 
 			// PROVEEDORES
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(786, 582);
+			this->Controls->Add(this->buscadorTBX);
+			this->Controls->Add(this->peliduracionTBX);
+			this->Controls->Add(this->peliANIOTBX);
+			this->Controls->Add(this->pelinombreTXB);
+			this->Controls->Add(this->codigobarraTXB);
+			this->Controls->Add(this->label9);
+			this->Controls->Add(this->NOMBRE);
+			this->Controls->Add(this->label7);
+			this->Controls->Add(this->CodigoBarra);
 			this->Controls->Add(this->emplBTN);
 			this->Controls->Add(this->table1);
 			this->Controls->Add(this->gmailTBX);
@@ -332,6 +440,7 @@ namespace FACPelisVistas {
 	private: System::Void emplBTN_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void provBTN_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
+	private: System::Void buscadorTBX_Click(System::Object^ sender, System::EventArgs^ e);
 
 
 

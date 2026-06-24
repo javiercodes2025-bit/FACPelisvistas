@@ -83,6 +83,39 @@ void cargarPeliculas(DataGridView^ grid) {
     }
 }
 
+bool buscarPeliculaPorId(int id, std::string& titulo, int& anio, int& duracion) {
+    try {
+        if (!BDDins || BDDins->isClosed()) {
+            conexionCls temp("", "", "", "", "", "", "", "", "", "", "");
+            temp.conectVoid();
+        }
+        sql::PreparedStatement* ps = BDDins->prepareStatement(
+            "SELECT titulo, anio, duracion FROM pelicula WHERE id_pelicula = ? AND habi = 1"
+        );
+        ps->setInt(1, id);
+        sql::ResultSet* rs = ps->executeQuery();
+        if (rs->next()) {
+            titulo = rs->getString("titulo");
+            anio = rs->isNull("anio") ? 0 : rs->getInt("anio");
+            duracion = rs->isNull("duracion") ? 0 : rs->getInt("duracion");
+            delete rs;
+            delete ps;
+            return true;
+        }
+        delete rs;
+        delete ps;
+        return false;
+    }
+    catch (sql::SQLException& e) {
+        MessageBox::Show(gcnew String(e.what()));
+        return false;
+    }
+    catch (Exception^ ex) {
+        MessageBox::Show(ex->Message);
+        return false;
+    }
+}
+
 void eliminarPelicula(int id) {
     try {
         if (!BDDins || BDDins->isClosed()) {

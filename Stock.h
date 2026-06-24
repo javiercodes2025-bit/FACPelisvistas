@@ -16,6 +16,7 @@ void ingresarPelicula(const std::string& titulo, int anio, int duracion,
     double precio, int descuento, int cantidad);
 void actualizarPelicula(int id, const std::string& titulo, int anio, int duracion,
     double precio, int descuento, int cantidad);
+bool buscarPeliculaPorId(int id, std::string& titulo, int& anio, int& duracion);
 
 ref class CLIENTES;
 ref class EMPLEADOS;
