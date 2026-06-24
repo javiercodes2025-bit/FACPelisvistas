@@ -149,6 +149,7 @@
     <ClCompile Include="Registrar.cpp" />
     <ClCompile Include="Stock.cpp" />
     <ClCompile Include="StockBDD.cpp" />
+    <ClCompile Include="ProveedorBDD.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clientes.h">

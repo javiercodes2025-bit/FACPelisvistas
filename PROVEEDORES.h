@@ -12,6 +12,13 @@ using namespace  std;
 ref class CLIENTES;
 ref class EMPLEADOS;
 ref class STOCK;
+void cargarProveedores(System::Windows::Forms::DataGridView^ grid);
+int ingresarProveedor(const std::string& nombre, const std::string& telefono,
+    const std::string& email, const std::string& domicilio);
+void ingresarPeliculaXProveedor(int fk_pelicula, int fk_proveedor);
+void eliminarProveedor(int id);
+void modificarProveedor(int id, const std::string& nombre, const std::string& telefono,
+    const std::string& email, const std::string& domicilio);
 
 
 namespace FACPelisVistas {
@@ -28,6 +35,7 @@ namespace FACPelisVistas {
 		PROVEEDORES(void)
 		{
 			InitializeComponent();
+			cargarProveedores(table1);
 			//
 			//TODO: agregar c�digo de constructor aqu�
 			//
@@ -61,9 +69,10 @@ namespace FACPelisVistas {
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ label5;
+	private: System::Windows::Forms::TextBox^ idproveedorTBX;
 
 
-	private: System::Windows::Forms::TextBox^ idTBX;
+
 	private: System::Windows::Forms::TextBox^ nombreTBX;
 
 	private: System::Windows::Forms::TextBox^ domicilioTBX;
@@ -135,7 +144,7 @@ namespace FACPelisVistas {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->idTBX = (gcnew System::Windows::Forms::TextBox());
+			this->idproveedorTBX = (gcnew System::Windows::Forms::TextBox());
 			this->nombreTBX = (gcnew System::Windows::Forms::TextBox());
 			this->domicilioTBX = (gcnew System::Windows::Forms::TextBox());
 			this->telefonoTBX = (gcnew System::Windows::Forms::TextBox());
@@ -259,13 +268,14 @@ namespace FACPelisVistas {
 			this->label5->TabIndex = 11;
 			this->label5->Text = L"GMAIL";
 			// 
-			// idTBX
+			// idproveedorTBX
 			// 
-			this->idTBX->Location = System::Drawing::Point(39, 190);
-			this->idTBX->Name = L"idTBX";
-			this->idTBX->Size = System::Drawing::Size(253, 20);
-			this->idTBX->TabIndex = 14;
-			this->idTBX->TextChanged += gcnew System::EventHandler(this, &PROVEEDORES::idTBX_TextChanged);
+			this->idproveedorTBX->Location = System::Drawing::Point(39, 190);
+			this->idproveedorTBX->Name = L"idproveedorTBX";
+			this->idproveedorTBX->ReadOnly = true;
+			this->idproveedorTBX->Size = System::Drawing::Size(253, 20);
+			this->idproveedorTBX->TabIndex = 14;
+			this->idproveedorTBX->TextChanged += gcnew System::EventHandler(this, &PROVEEDORES::idTBX_TextChanged);
 			// 
 			// nombreTBX
 			// 
@@ -300,11 +310,13 @@ namespace FACPelisVistas {
 			// 
 			// table1
 			// 
+			this->table1->AllowUserToAddRows = false;
 			this->table1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->table1->Location = System::Drawing::Point(12, 329);
 			this->table1->Name = L"table1";
 			this->table1->Size = System::Drawing::Size(762, 241);
 			this->table1->TabIndex = 21;
+			this->table1->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &PROVEEDORES::table1_CellClick);
 			// 
 			// emplBTN
 			// 
@@ -358,30 +370,31 @@ namespace FACPelisVistas {
 			this->codigobarraTXB->Name = L"codigobarraTXB";
 			this->codigobarraTXB->Size = System::Drawing::Size(253, 20);
 			this->codigobarraTXB->TabIndex = 28;
+			this->codigobarraTXB->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &PROVEEDORES::codigobarraTXB_KeyPress);
 			// 
 			// pelinombreTXB
 			// 
 			this->pelinombreTXB->Location = System::Drawing::Point(39, 133);
 			this->pelinombreTXB->Name = L"pelinombreTXB";
+			this->pelinombreTXB->ReadOnly = true;
 			this->pelinombreTXB->Size = System::Drawing::Size(253, 20);
 			this->pelinombreTXB->TabIndex = 29;
-			this->pelinombreTXB->ReadOnly = true;
 			// 
 			// peliANIOTBX
 			// 
 			this->peliANIOTBX->Location = System::Drawing::Point(303, 132);
 			this->peliANIOTBX->Name = L"peliANIOTBX";
+			this->peliANIOTBX->ReadOnly = true;
 			this->peliANIOTBX->Size = System::Drawing::Size(135, 20);
 			this->peliANIOTBX->TabIndex = 30;
-			this->peliANIOTBX->ReadOnly = true;
 			// 
 			// peliduracionTBX
 			// 
 			this->peliduracionTBX->Location = System::Drawing::Point(449, 132);
 			this->peliduracionTBX->Name = L"peliduracionTBX";
+			this->peliduracionTBX->ReadOnly = true;
 			this->peliduracionTBX->Size = System::Drawing::Size(114, 20);
 			this->peliduracionTBX->TabIndex = 31;
-			this->peliduracionTBX->ReadOnly = true;
 			// 
 			// buscadorTBX
 			// 
@@ -413,7 +426,7 @@ namespace FACPelisVistas {
 			this->Controls->Add(this->telefonoTBX);
 			this->Controls->Add(this->domicilioTBX);
 			this->Controls->Add(this->nombreTBX);
-			this->Controls->Add(this->idTBX);
+			this->Controls->Add(this->idproveedorTBX);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label3);
@@ -444,12 +457,13 @@ namespace FACPelisVistas {
 
 
 
-	private: System::Void ingrBTN_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
-	private: System::Void eliBTN_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
-	private: System::Void modiBTN_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
+	private: System::Void ingrBTN_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void eliBTN_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void modiBTN_Click(System::Object^ sender, System::EventArgs^ e);
+
+	private: System::Void table1_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
+
+	private: System::Void codigobarraTXB_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e);
 
 
 
