@@ -9,6 +9,10 @@ using namespace  std;
 #include <".h">
 #include <".h"> */
 
+ref class CLIENTES;
+ref class EMPLEADOS;
+ref class STOCK;
+
 
 namespace FACPelisVistas {
 
@@ -18,10 +22,6 @@ namespace FACPelisVistas {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-
-	/// <summary>
-	/// Resumen de EMPLEADOS
-	/// </summary>
 	public ref class PROVEEDORES : public System::Windows::Forms::Form
 	{
 	public:
@@ -195,7 +195,7 @@ namespace FACPelisVistas {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(36, 122);
+			this->label1->Location = System::Drawing::Point(36, 173);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(92, 13);
 			this->label1->TabIndex = 7;
@@ -204,7 +204,7 @@ namespace FACPelisVistas {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(36, 172);
+			this->label2->Location = System::Drawing::Point(36, 223);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(54, 13);
 			this->label2->TabIndex = 8;
@@ -213,7 +213,7 @@ namespace FACPelisVistas {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(307, 220);
+			this->label3->Location = System::Drawing::Point(307, 271);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(62, 13);
 			this->label3->TabIndex = 9;
@@ -222,7 +222,7 @@ namespace FACPelisVistas {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(36, 220);
+			this->label4->Location = System::Drawing::Point(36, 271);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(64, 13);
 			this->label4->TabIndex = 10;
@@ -231,7 +231,7 @@ namespace FACPelisVistas {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(307, 172);
+			this->label5->Location = System::Drawing::Point(307, 223);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(40, 13);
 			this->label5->TabIndex = 11;
@@ -239,7 +239,7 @@ namespace FACPelisVistas {
 			// 
 			// idTBX
 			// 
-			this->idTBX->Location = System::Drawing::Point(39, 139);
+			this->idTBX->Location = System::Drawing::Point(39, 190);
 			this->idTBX->Name = L"idTBX";
 			this->idTBX->Size = System::Drawing::Size(253, 20);
 			this->idTBX->TabIndex = 14;
@@ -247,7 +247,7 @@ namespace FACPelisVistas {
 			// 
 			// nombreTBX
 			// 
-			this->nombreTBX->Location = System::Drawing::Point(39, 188);
+			this->nombreTBX->Location = System::Drawing::Point(39, 239);
 			this->nombreTBX->Name = L"nombreTBX";
 			this->nombreTBX->Size = System::Drawing::Size(253, 20);
 			this->nombreTBX->TabIndex = 15;
@@ -255,14 +255,14 @@ namespace FACPelisVistas {
 			// 
 			// domicilioTBX
 			// 
-			this->domicilioTBX->Location = System::Drawing::Point(310, 236);
+			this->domicilioTBX->Location = System::Drawing::Point(310, 287);
 			this->domicilioTBX->Name = L"domicilioTBX";
 			this->domicilioTBX->Size = System::Drawing::Size(253, 20);
 			this->domicilioTBX->TabIndex = 16;
 			// 
 			// telefonoTBX
 			// 
-			this->telefonoTBX->Location = System::Drawing::Point(39, 236);
+			this->telefonoTBX->Location = System::Drawing::Point(39, 287);
 			this->telefonoTBX->Name = L"telefonoTBX";
 			this->telefonoTBX->Size = System::Drawing::Size(253, 20);
 			this->telefonoTBX->TabIndex = 17;
@@ -270,7 +270,7 @@ namespace FACPelisVistas {
 			// 
 			// gmailTBX
 			// 
-			this->gmailTBX->Location = System::Drawing::Point(310, 188);
+			this->gmailTBX->Location = System::Drawing::Point(310, 239);
 			this->gmailTBX->Name = L"gmailTBX";
 			this->gmailTBX->Size = System::Drawing::Size(253, 20);
 			this->gmailTBX->TabIndex = 18;
@@ -292,6 +292,7 @@ namespace FACPelisVistas {
 			this->emplBTN->TabIndex = 23;
 			this->emplBTN->Text = L"EMPLEADOS";
 			this->emplBTN->UseVisualStyleBackColor = true;
+			this->emplBTN->Click += gcnew System::EventHandler(this, &PROVEEDORES::emplBTN_Click);
 			// 
 			// PROVEEDORES
 			// 
@@ -326,11 +327,10 @@ namespace FACPelisVistas {
 #pragma endregion
 	private: System::Void facBTN_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void stockBTN_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
+	private: System::Void stockBTN_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void cliBTN_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void emplBTN_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void provBTN_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
-	private: System::Void cliBTN_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 
 

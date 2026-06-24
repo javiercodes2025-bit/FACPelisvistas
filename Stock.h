@@ -19,6 +19,7 @@ void actualizarPelicula(int id, const std::string& titulo, int anio, int duracio
 
 ref class CLIENTES;
 ref class EMPLEADOS;
+ref class PROVEEDORES;
 
 namespace FACPelisVistas {
 
@@ -381,8 +382,7 @@ namespace FACPelisVistas {
 	}
 
 	private: System::Void cliBTN_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void provBTN_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
+	private: System::Void provBTN_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void emplBTN_Click(System::Object^ sender, System::EventArgs^ e);
 
 

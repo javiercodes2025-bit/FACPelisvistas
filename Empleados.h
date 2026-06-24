@@ -3,6 +3,7 @@
 ref class Login;
 ref class CLIENTES;
 ref class STOCK;
+ref class PROVEEDORES;
 
 #include <msclr/marshal_cppstd.h>
 
@@ -408,8 +409,7 @@ private: System::Windows::Forms::Button^ cerrarBTNEMP;
 	private: System::Void facBTN_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void cliBTN_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void provBTN_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
+	private: System::Void provBTN_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void stockBTN_Click(System::Object^ sender, System::EventArgs^ e);
 
 

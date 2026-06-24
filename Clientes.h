@@ -5,6 +5,7 @@
 using namespace  std;
 ref class EMPLEADOS;
 ref class STOCK;
+ref class PROVEEDORES;
 void cargarClientes(System::Windows::Forms::DataGridView^ grid);
 void eliminarCliente(int idPersona);
 void modificarCliente(int idPersona,
@@ -521,8 +522,7 @@ namespace FACPelisVistas {
 
 	private: System::Void stockBTN_Click(System::Object^ sender, System::EventArgs^ e);
 
-	private: System::Void provBTN_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
+	private: System::Void provBTN_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void emplBTN_Click(System::Object^ sender, System::EventArgs^ e);
 
 
