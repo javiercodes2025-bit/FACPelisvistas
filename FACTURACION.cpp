@@ -34,29 +34,71 @@ void FACPelisvistas::FACTURACION::stockBTN_Click(System::Object^ sender, System:
 }
 void FACPelisvistas::FACTURACION::buscadorClienteBTN_Click(System::Object^ sender, System::EventArgs^ e) {
 	if (String::IsNullOrWhiteSpace(buscadorClienteBTX->Text)) return;
-	std::string doc = msclr::interop::marshal_as<std::string>(buscadorClienteBTX->Text);
+	int idPersona;
+	if (!Int32::TryParse(buscadorClienteBTX->Text, idPersona)) return;
 	try {
 		if (!BDDins || BDDins->isClosed()) {
 			conexionCls temp("", "", "", "", "", "", "", "", "", "", "");
 			temp.conectVoid();
 		}
 		sql::PreparedStatement* ps = BDDins->prepareStatement(
-			"SELECT p.nombre, p.apellido "
+			"SELECT p.nombre, p.apellido, p.habilitado "
 			"FROM persona p "
-			"JOIN personaXdocumento pdoc ON p.id_persona = pdoc.fk_empleado "
-			"JOIN documento doc ON pdoc.fk_persona = doc.id_documento "
-			"WHERE doc.numero_documento = ? AND doc.habilitado = 1 "
-			"AND p.habilitado = 1 AND p.rol = 'CLIENTE'"
+			"WHERE p.id_persona = ?"
 		);
-		ps->setString(1, sql::SQLString(doc));
+		ps->setInt(1, idPersona);
 		sql::ResultSet* rs = ps->executeQuery();
 		if (rs->next()) {
-			nombreClienteBTX->Text = gcnew String(rs->getString("nombre").c_str()) + " " +
-				gcnew String(rs->getString("apellido").c_str());
+			if (rs->getInt("habilitado") == 0) {
+				MessageBox::Show("Existe pero habilitado = 0");
+				nombreClienteBTX->Text = L"";
+			} else {
+				nombreClienteBTX->Text = gcnew String(rs->getString("nombre").c_str()) + " " +
+					gcnew String(rs->getString("apellido").c_str());
+			}
+		} else {
+			MessageBox::Show("Esa persona no existe.. ");
+			nombreClienteBTX->Text = L"";
+		}
+		delete rs;
+		delete ps;
+	}
+	catch (sql::SQLException& ex) {
+		MessageBox::Show(gcnew String(ex.what()));
+	}
+}
+void FACPelisvistas::FACTURACION::buscarProBTN_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (String::IsNullOrWhiteSpace(CodigoBarraTBX->Text)) return;
+	int idPelicula;
+	if (!Int32::TryParse(CodigoBarraTBX->Text, idPelicula)) return;
+	try {
+		if (!BDDins || BDDins->isClosed()) {
+			conexionCls temp("", "", "", "", "", "", "", "", "", "", "");
+			temp.conectVoid();
+		}
+		sql::PreparedStatement* ps = BDDins->prepareStatement(
+			"SELECT p.titulo, p.precio, p.decuentoXproducto, s.cantidad "
+			"FROM pelicula p "
+			"LEFT JOIN stock s ON p.id_pelicula = s.fk_pelicula "
+			"WHERE p.id_pelicula = ? AND p.habi = 1"
+		);
+		ps->setInt(1, idPelicula);
+		sql::ResultSet* rs = ps->executeQuery();
+		if (rs->next()) {
+			nombrepeliTBX->Text = gcnew String(rs->getString("titulo").c_str());
+			precioTBX->Text = gcnew String(rs->getString("precio").c_str());
+			descuentoXproducBTX->Text = gcnew String(rs->getString("decuentoXproducto").c_str());
+			if (rs->isNull("cantidad"))
+				stockTBX->Text = L"0";
+			else
+				stockTBX->Text = gcnew String(rs->getString("cantidad").c_str());
 		}
 		else {
-			MessageBox::Show("No existe");
-			nombreClienteBTX->Text = L"";
+			MessageBox::Show("Esa pelicula no existe");
+			nombrepeliTBX->Text = L"";
+			precioTBX->Text = L"";
+			descuentoXproducBTX->Text = L"";
+			stockTBX->Text = L"";
 		}
 		delete rs;
 		delete ps;

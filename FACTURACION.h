@@ -46,6 +46,17 @@ namespace FACPelisvistas {
 	private: System::Windows::Forms::TextBox^ nombreClienteBTX;
 
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Button^ buscarProBTN;
+	private: System::Windows::Forms::TextBox^ CodigoBarraTBX;
+	private: System::Windows::Forms::TextBox^ stockTBX;
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::TextBox^ precioTBX;
+	private: System::Windows::Forms::TextBox^ nombrepeliTBX;
+	private: System::Windows::Forms::Label^ label5;
+	private: System::Windows::Forms::Label^ label6;
+	private: System::Windows::Forms::TextBox^ descuentoXproducBTX;
 
 
 
@@ -76,12 +87,23 @@ namespace FACPelisvistas {
 			this->NOM = (gcnew System::Windows::Forms::Label());
 			this->nombreClienteBTX = (gcnew System::Windows::Forms::TextBox());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->buscarProBTN = (gcnew System::Windows::Forms::Button());
+			this->CodigoBarraTBX = (gcnew System::Windows::Forms::TextBox());
+			this->stockTBX = (gcnew System::Windows::Forms::TextBox());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->precioTBX = (gcnew System::Windows::Forms::TextBox());
+			this->nombrepeliTBX = (gcnew System::Windows::Forms::TextBox());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->descuentoXproducBTX = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// clienteBTN
 			// 
-			this->clienteBTN->Location = System::Drawing::Point(26, 12);
+			this->clienteBTN->Location = System::Drawing::Point(26, 39);
 			this->clienteBTN->Name = L"clienteBTN";
 			this->clienteBTN->Size = System::Drawing::Size(184, 23);
 			this->clienteBTN->TabIndex = 0;
@@ -91,7 +113,7 @@ namespace FACPelisvistas {
 			// 
 			// empleadosBTN
 			// 
-			this->empleadosBTN->Location = System::Drawing::Point(227, 12);
+			this->empleadosBTN->Location = System::Drawing::Point(227, 39);
 			this->empleadosBTN->Name = L"empleadosBTN";
 			this->empleadosBTN->Size = System::Drawing::Size(201, 23);
 			this->empleadosBTN->TabIndex = 1;
@@ -101,7 +123,7 @@ namespace FACPelisvistas {
 			// 
 			// proveedoresBTN
 			// 
-			this->proveedoresBTN->Location = System::Drawing::Point(444, 12);
+			this->proveedoresBTN->Location = System::Drawing::Point(444, 39);
 			this->proveedoresBTN->Name = L"proveedoresBTN";
 			this->proveedoresBTN->Size = System::Drawing::Size(201, 23);
 			this->proveedoresBTN->TabIndex = 2;
@@ -111,7 +133,7 @@ namespace FACPelisvistas {
 			// 
 			// stockBTN
 			// 
-			this->stockBTN->Location = System::Drawing::Point(651, 12);
+			this->stockBTN->Location = System::Drawing::Point(651, 39);
 			this->stockBTN->Name = L"stockBTN";
 			this->stockBTN->Size = System::Drawing::Size(184, 23);
 			this->stockBTN->TabIndex = 3;
@@ -122,22 +144,22 @@ namespace FACPelisvistas {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(26, 73);
+			this->label1->Location = System::Drawing::Point(26, 100);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(87, 13);
+			this->label1->Size = System::Drawing::Size(92, 13);
 			this->label1->TabIndex = 4;
-			this->label1->Text = L"C.DOCUMENTO";
+			this->label1->Text = L"INDETIFICACION";
 			// 
 			// buscadorClienteBTX
 			// 
-			this->buscadorClienteBTX->Location = System::Drawing::Point(29, 101);
+			this->buscadorClienteBTX->Location = System::Drawing::Point(29, 128);
 			this->buscadorClienteBTX->Name = L"buscadorClienteBTX";
 			this->buscadorClienteBTX->Size = System::Drawing::Size(181, 20);
 			this->buscadorClienteBTX->TabIndex = 5;
 			// 
 			// buscadorClienteBTN
 			// 
-			this->buscadorClienteBTN->Location = System::Drawing::Point(359, 99);
+			this->buscadorClienteBTN->Location = System::Drawing::Point(359, 126);
 			this->buscadorClienteBTN->Name = L"buscadorClienteBTN";
 			this->buscadorClienteBTN->Size = System::Drawing::Size(99, 23);
 			this->buscadorClienteBTN->TabIndex = 6;
@@ -148,7 +170,7 @@ namespace FACPelisvistas {
 			// NOM
 			// 
 			this->NOM->AutoSize = true;
-			this->NOM->Location = System::Drawing::Point(224, 85);
+			this->NOM->Location = System::Drawing::Point(224, 112);
 			this->NOM->Name = L"NOM";
 			this->NOM->Size = System::Drawing::Size(54, 13);
 			this->NOM->TabIndex = 7;
@@ -156,10 +178,12 @@ namespace FACPelisvistas {
 			// 
 			// nombreClienteBTX
 			// 
-			this->nombreClienteBTX->Location = System::Drawing::Point(227, 101);
+			this->nombreClienteBTX->Location = System::Drawing::Point(227, 128);
 			this->nombreClienteBTX->Name = L"nombreClienteBTX";
+			this->nombreClienteBTX->ReadOnly = true;
 			this->nombreClienteBTX->Size = System::Drawing::Size(126, 20);
 			this->nombreClienteBTX->TabIndex = 8;
+			this->nombreClienteBTX->Text = L"SINCUENTA";
 			// 
 			// dataGridView1
 			// 
@@ -169,11 +193,112 @@ namespace FACPelisvistas {
 			this->dataGridView1->Size = System::Drawing::Size(832, 144);
 			this->dataGridView1->TabIndex = 9;
 			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(29, 176);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(65, 13);
+			this->label2->TabIndex = 10;
+			this->label2->Text = L"CodigoBarra";
+			// 
+			// buscarProBTN
+			// 
+			this->buscarProBTN->Location = System::Drawing::Point(359, 191);
+			this->buscarProBTN->Name = L"buscarProBTN";
+			this->buscarProBTN->Size = System::Drawing::Size(99, 23);
+			this->buscarProBTN->TabIndex = 11;
+			this->buscarProBTN->Text = L"Buscar";
+			this->buscarProBTN->UseVisualStyleBackColor = true;
+			this->buscarProBTN->Click += gcnew System::EventHandler(this, &FACTURACION::buscarProBTN_Click);
+			// 
+			// CodigoBarraTBX
+			// 
+			this->CodigoBarraTBX->Location = System::Drawing::Point(32, 191);
+			this->CodigoBarraTBX->Name = L"CodigoBarraTBX";
+			this->CodigoBarraTBX->Size = System::Drawing::Size(252, 20);
+			this->CodigoBarraTBX->TabIndex = 12;
+			// 
+			// stockTBX
+			// 
+			this->stockTBX->Location = System::Drawing::Point(29, 249);
+			this->stockTBX->Name = L"stockTBX";
+			this->stockTBX->Size = System::Drawing::Size(255, 20);
+			this->stockTBX->TabIndex = 13;
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(29, 233);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(43, 13);
+			this->label3->TabIndex = 14;
+			this->label3->Text = L"STOCK";
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(29, 276);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(47, 13);
+			this->label4->TabIndex = 15;
+			this->label4->Text = L"PRECIO";
+			// 
+			// precioTBX
+			// 
+			this->precioTBX->Location = System::Drawing::Point(29, 292);
+			this->precioTBX->Name = L"precioTBX";
+			this->precioTBX->Size = System::Drawing::Size(255, 20);
+			this->precioTBX->TabIndex = 16;
+			// 
+			// nombrepeliTBX
+			// 
+			this->nombrepeliTBX->Location = System::Drawing::Point(32, 413);
+			this->nombrepeliTBX->Name = L"nombrepeliTBX";
+			this->nombrepeliTBX->Size = System::Drawing::Size(252, 20);
+			this->nombrepeliTBX->TabIndex = 17;
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(32, 394);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(69, 13);
+			this->label5->TabIndex = 18;
+			this->label5->Text = L"N.PELICULA";
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(26, 319);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(103, 13);
+			this->label6->TabIndex = 19;
+			this->label6->Text = L"DecuentoXproducto";
+			// 
+			// descuentoXproducBTX
+			// 
+			this->descuentoXproducBTX->Location = System::Drawing::Point(29, 335);
+			this->descuentoXproducBTX->Name = L"descuentoXproducBTX";
+			this->descuentoXproducBTX->Size = System::Drawing::Size(255, 20);
+			this->descuentoXproducBTX->TabIndex = 20;
+			// 
 			// FACTURACION
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(870, 754);
+			this->Controls->Add(this->descuentoXproducBTX);
+			this->Controls->Add(this->label6);
+			this->Controls->Add(this->label5);
+			this->Controls->Add(this->nombrepeliTBX);
+			this->Controls->Add(this->precioTBX);
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->stockTBX);
+			this->Controls->Add(this->CodigoBarraTBX);
+			this->Controls->Add(this->buscarProBTN);
+			this->Controls->Add(this->label2);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->nombreClienteBTX);
 			this->Controls->Add(this->NOM);
@@ -202,5 +327,6 @@ private: System::Void empleadosBTN_Click(System::Object^ sender, System::EventAr
 private: System::Void clienteBTN_Click(System::Object^ sender, System::EventArgs^ e);
 private: System::Void stockBTN_Click(System::Object^ sender, System::EventArgs^ e);
 private: System::Void buscadorClienteBTN_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void buscarProBTN_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }
