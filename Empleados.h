@@ -452,18 +452,18 @@ private: System::Windows::Forms::Button^ cerrarBTNEMP;
 			MessageBox::Show(ex->Message);
 		}
 	}
-	private: System::Void eliBTN_Click(System::Object^ sender, System::EventArgs^ e) {
+		private: System::Void eliBTN_Click(System::Object^ sender, System::EventArgs^ e) {
 		try {
 			if (table1->SelectedRows->Count == 0) {
 				MessageBox::Show("Seleccione un empleado de la tabla");
 				return;
 			}
-			int idPersona = (int)table1->SelectedRows[0]->Cells["ID"]->Value;
-			String^ rol = table1->SelectedRows[0]->Cells["Rol"]->Value->ToString();
-			if (rol == "ADMINISTRADOR") {
-				MessageBox::Show("No se puede eliminar un administrador");
+			String^ rol = (String^)table1->SelectedRows[0]->Cells["Rol"]->Value;
+			if (String::Compare(rol, "ADMINISTRADOR", true) == 0) {
+				MessageBox::Show("No se puede eliminar un Administrador");
 				return;
 			}
+			int idPersona = (int)table1->SelectedRows[0]->Cells["ID"]->Value;
 			auto result = MessageBox::Show("¿Deshabilitar este empleado?", "Confirmar", MessageBoxButtons::YesNo);
 			if (result == System::Windows::Forms::DialogResult::Yes) {
 				eliminarPersona(idPersona);
