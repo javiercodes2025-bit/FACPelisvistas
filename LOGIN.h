@@ -1,6 +1,15 @@
 #pragma once
 #include "Empleados.h"
 #include "Registrar.h"
+#include "VISTAempleadosFAC1.h"
+#include "peliVAR.h"
+#include <msclr/marshal_cppstd.h>
+#include <jdbc/cppconn/driver.h>
+#include <jdbc/cppconn/exception.h>
+#include <jdbc/cppconn/statement.h>
+#include <jdbc/mysql_connection.h>
+#include <jdbc/mysql_driver.h>
+#include <jdbc/cppconn/prepared_statement.h>
 
 /*como harias el select.. */
 namespace FACPelisVistas {
@@ -143,17 +152,89 @@ namespace FACPelisVistas {
 #pragma endregion
 
 	private: System::Void ingBTN_Click(System::Object^ sender, System::EventArgs^ e) {
-		/* Select.. A  nombre + pass con un Where a rol... */
-		EMPLEADOS^ emp = gcnew EMPLEADOS;
-		this->Hide();
-		emp->Show();
+		if (String::IsNullOrWhiteSpace(userTBX->Text) || String::IsNullOrWhiteSpace(passTBX->Text)) {
+			MessageBox::Show("Complete usuario y contrasena");
+			return;
+		}
+		try {
+			if (!BDDins || BDDins->isClosed()) {
+				conexionCls temp("", "", "", "", "", "", "", "", "", "", "");
+				temp.conectVoid();
+			}
+			sql::PreparedStatement* ps = BDDins->prepareStatement(
+				"SELECT rol FROM persona WHERE nombre = ? AND password = ? AND habilitado = 1"
+			);
+			ps->setString(1, sql::SQLString(
+				msclr::interop::marshal_as<std::string>(userTBX->Text)));
+			ps->setString(2, sql::SQLString(
+				msclr::interop::marshal_as<std::string>(passTBX->Text)));
+			sql::ResultSet* rs = ps->executeQuery();
+			if (rs->next()) {
+				std::string rol = rs->getString("rol");
+				if (rol == "ADMINISTRADOR") {
+					EMPLEADOS^ emp = gcnew EMPLEADOS;
+					this->Hide();
+					emp->Show();
+				}
+				else if (rol == "EMPLEADO") {
+					FACPelisvistas::VISTAempleadosFAC^ emp = gcnew FACPelisvistas::VISTAempleadosFAC;
+					this->Hide();
+					emp->Show();
+				}
+				else {
+					MessageBox::Show("Rol no valido");
+				}
+			}
+			else {
+				MessageBox::Show("Usuario o contrasena incorrectos");
+			}
+			delete rs;
+			delete ps;
+		}
+		catch (sql::SQLException& ex) {
+			MessageBox::Show(gcnew String(ex.what()));
+		}
 	}
 
 
 	private: System::Void resBTN_Click(System::Object^ sender, System::EventArgs^ e) {
-		Registrar^ res = gcnew Registrar;
-		this->Hide();
-		res->Show();
+		if (String::IsNullOrWhiteSpace(userTBX->Text) || String::IsNullOrWhiteSpace(passTBX->Text)) {
+			MessageBox::Show("Complete usuario y contrasena");
+			return;
+		}
+		try {
+			if (!BDDins || BDDins->isClosed()) {
+				conexionCls temp("", "", "", "", "", "", "", "", "", "", "");
+				temp.conectVoid();
+			}
+			sql::PreparedStatement* ps = BDDins->prepareStatement(
+				"SELECT rol FROM persona WHERE nombre = ? AND password = ? AND habilitado = 1"
+			);
+			ps->setString(1, sql::SQLString(
+				msclr::interop::marshal_as<std::string>(userTBX->Text)));
+			ps->setString(2, sql::SQLString(
+				msclr::interop::marshal_as<std::string>(passTBX->Text)));
+			sql::ResultSet* rs = ps->executeQuery();
+			if (rs->next()) {
+				std::string rol = rs->getString("rol");
+				if (rol == "ADMINISTRADOR") {
+					Registrar^ res = gcnew Registrar;
+					this->Hide();
+					res->Show();
+				}
+				else {
+					MessageBox::Show("Solo administradores pueden registrarse");
+				}
+			}
+			else {
+				MessageBox::Show("Usuario o contrasena incorrectos");
+			}
+			delete rs;
+			delete ps;
+		}
+		catch (sql::SQLException& ex) {
+			MessageBox::Show(gcnew String(ex.what()));
+		}
 	}
 	};
 }
