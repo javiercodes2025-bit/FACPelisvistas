@@ -143,6 +143,7 @@
     <ClCompile Include="Clientes.cpp" />
     <ClCompile Include="EmpleadoBDD.cpp" />
     <ClCompile Include="Empleados.cpp" />
+    <ClCompile Include="FACTURACION.cpp" />
     <ClCompile Include="LOGIN.cpp" />
     <ClCompile Include="PersonaBDD.cpp" />
     <ClCompile Include="PROVEEDORES.cpp" />
@@ -157,6 +158,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Empleados.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="FACTURACION.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="LOGIN.h">
@@ -179,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Empleados.resx">
       <DependentUpon>Empleados.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FACTURACION.resx">
+      <DependentUpon>FACTURACION.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LOGIN.resx">
       <DependentUpon>LOGIN.h</DependentUpon>
