@@ -2,6 +2,11 @@
 #include "peliVAR.h"
 ref class Login;
 void cargarAdministradores(System::Windows::Forms::DataGridView^ grid);
+void modificarPersonaCompleta(int idPersona, const std::string& nombre, const std::string& apellido,
+    const std::string& password, const std::string& rol,
+    const std::string& numeroDocumento, const std::string& tipoDocumento,
+    const std::string& correo, const std::string& telefono,
+    const std::string& calle, const std::string& numero, const std::string& ciudad);
 
 #include <msclr/marshal_cppstd.h>
 
@@ -31,7 +36,7 @@ namespace FACPelisVistas {
 			L"ELEGIR:",
 			L"DNI",
 			L"CUIL",
-			L"Pasaporte Electrónico"
+			L"Pasaporte Electronico"
 		};
 
 		this->tipoCBOX->Items->AddRange(tipoItems);
@@ -77,7 +82,7 @@ namespace FACPelisVistas {
 	private: System::Windows::Forms::TextBox^ apeTBX;
 	private: System::Windows::Forms::TextBox^ telefTBX;
 
-
+		  
 
 	private: System::Windows::Forms::TextBox^ emailTBX;
 
@@ -110,6 +115,11 @@ namespace FACPelisVistas {
 	private: System::Windows::Forms::ComboBox^ rolCBOX;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::Button^ modificarTBX;
+	private: System::Windows::Forms::Label^ idp;
+	private: System::Windows::Forms::TextBox^ idpersonaTBX;
+
+
+
 
 	protected:
 
@@ -156,6 +166,8 @@ namespace FACPelisVistas {
 			this->rolCBOX = (gcnew System::Windows::Forms::ComboBox());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->modificarTBX = (gcnew System::Windows::Forms::Button());
+			this->idp = (gcnew System::Windows::Forms::Label());
+			this->idpersonaTBX = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -171,7 +183,7 @@ namespace FACPelisVistas {
 			// 
 			// atrBTN
 			// 
-			this->atrBTN->Location = System::Drawing::Point(383, 379);
+			this->atrBTN->Location = System::Drawing::Point(544, 379);
 			this->atrBTN->Name = L"atrBTN";
 			this->atrBTN->Size = System::Drawing::Size(153, 23);
 			this->atrBTN->TabIndex = 1;
@@ -182,7 +194,7 @@ namespace FACPelisVistas {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(31, 45);
+			this->label1->Location = System::Drawing::Point(31, 83);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(44, 13);
 			this->label1->TabIndex = 2;
@@ -191,7 +203,7 @@ namespace FACPelisVistas {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(31, 84);
+			this->label2->Location = System::Drawing::Point(31, 122);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(44, 13);
 			this->label2->TabIndex = 3;
@@ -200,7 +212,7 @@ namespace FACPelisVistas {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(25, 297);
+			this->label3->Location = System::Drawing::Point(25, 335);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(49, 13);
 			this->label3->TabIndex = 4;
@@ -209,7 +221,7 @@ namespace FACPelisVistas {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(31, 256);
+			this->label4->Location = System::Drawing::Point(31, 291);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(32, 13);
 			this->label4->TabIndex = 5;
@@ -218,7 +230,7 @@ namespace FACPelisVistas {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(31, 128);
+			this->label5->Location = System::Drawing::Point(31, 166);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(53, 13);
 			this->label5->TabIndex = 6;
@@ -227,7 +239,7 @@ namespace FACPelisVistas {
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(31, 166);
+			this->label6->Location = System::Drawing::Point(31, 201);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(23, 13);
 			this->label6->TabIndex = 7;
@@ -235,35 +247,35 @@ namespace FACPelisVistas {
 			// 
 			// nomTBX
 			// 
-			this->nomTBX->Location = System::Drawing::Point(28, 61);
+			this->nomTBX->Location = System::Drawing::Point(28, 99);
 			this->nomTBX->Name = L"nomTBX";
 			this->nomTBX->Size = System::Drawing::Size(315, 20);
 			this->nomTBX->TabIndex = 8;
 			// 
 			// apeTBX
 			// 
-			this->apeTBX->Location = System::Drawing::Point(28, 100);
+			this->apeTBX->Location = System::Drawing::Point(28, 138);
 			this->apeTBX->Name = L"apeTBX";
 			this->apeTBX->Size = System::Drawing::Size(315, 20);
 			this->apeTBX->TabIndex = 9;
 			// 
 			// telefTBX
 			// 
-			this->telefTBX->Location = System::Drawing::Point(28, 313);
+			this->telefTBX->Location = System::Drawing::Point(28, 351);
 			this->telefTBX->Name = L"telefTBX";
 			this->telefTBX->Size = System::Drawing::Size(315, 20);
 			this->telefTBX->TabIndex = 10;
 			// 
 			// emailTBX
 			// 
-			this->emailTBX->Location = System::Drawing::Point(28, 271);
+			this->emailTBX->Location = System::Drawing::Point(28, 309);
 			this->emailTBX->Name = L"emailTBX";
 			this->emailTBX->Size = System::Drawing::Size(315, 20);
 			this->emailTBX->TabIndex = 11;
 			// 
 			// passTBX
 			// 
-			this->passTBX->Location = System::Drawing::Point(28, 144);
+			this->passTBX->Location = System::Drawing::Point(28, 182);
 			this->passTBX->Name = L"passTBX";
 			this->passTBX->Size = System::Drawing::Size(315, 20);
 			this->passTBX->TabIndex = 12;
@@ -279,7 +291,7 @@ namespace FACPelisVistas {
 			// 
 			// NumDoTBX
 			// 
-			this->NumDoTBX->Location = System::Drawing::Point(383, 61);
+			this->NumDoTBX->Location = System::Drawing::Point(383, 99);
 			this->NumDoTBX->Name = L"NumDoTBX";
 			this->NumDoTBX->Size = System::Drawing::Size(315, 20);
 			this->NumDoTBX->TabIndex = 15;
@@ -287,7 +299,7 @@ namespace FACPelisVistas {
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(380, 45);
+			this->label8->Location = System::Drawing::Point(380, 83);
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(99, 13);
 			this->label8->TabIndex = 17;
@@ -296,7 +308,7 @@ namespace FACPelisVistas {
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(380, 85);
+			this->label9->Location = System::Drawing::Point(380, 123);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(83, 13);
 			this->label9->TabIndex = 18;
@@ -304,22 +316,23 @@ namespace FACPelisVistas {
 			// 
 			// calleTBX
 			// 
-			this->calleTBX->Location = System::Drawing::Point(383, 183);
+			this->calleTBX->Location = System::Drawing::Point(383, 221);
 			this->calleTBX->Name = L"calleTBX";
 			this->calleTBX->Size = System::Drawing::Size(315, 20);
 			this->calleTBX->TabIndex = 22;
 			// 
 			// numCTBX
 			// 
-			this->numCTBX->Location = System::Drawing::Point(383, 225);
+			this->numCTBX->Location = System::Drawing::Point(383, 263);
 			this->numCTBX->Name = L"numCTBX";
 			this->numCTBX->Size = System::Drawing::Size(315, 20);
 			this->numCTBX->TabIndex = 21;
+			this->numCTBX->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &Registrar::numCTBX_KeyPress);
 			// 
 			// label10
 			// 
 			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(380, 167);
+			this->label10->Location = System::Drawing::Point(380, 205);
 			this->label10->Name = L"label10";
 			this->label10->Size = System::Drawing::Size(30, 13);
 			this->label10->TabIndex = 20;
@@ -328,7 +341,7 @@ namespace FACPelisVistas {
 			// label11
 			// 
 			this->label11->AutoSize = true;
-			this->label11->Location = System::Drawing::Point(380, 209);
+			this->label11->Location = System::Drawing::Point(380, 247);
 			this->label11->Name = L"label11";
 			this->label11->Size = System::Drawing::Size(44, 13);
 			this->label11->TabIndex = 19;
@@ -336,7 +349,7 @@ namespace FACPelisVistas {
 			// 
 			// ciudTBX
 			// 
-			this->ciudTBX->Location = System::Drawing::Point(383, 271);
+			this->ciudTBX->Location = System::Drawing::Point(383, 309);
 			this->ciudTBX->Name = L"ciudTBX";
 			this->ciudTBX->Size = System::Drawing::Size(315, 20);
 			this->ciudTBX->TabIndex = 26;
@@ -344,7 +357,7 @@ namespace FACPelisVistas {
 			// label12
 			// 
 			this->label12->AutoSize = true;
-			this->label12->Location = System::Drawing::Point(380, 255);
+			this->label12->Location = System::Drawing::Point(380, 293);
 			this->label12->Name = L"label12";
 			this->label12->Size = System::Drawing::Size(40, 13);
 			this->label12->TabIndex = 24;
@@ -353,7 +366,7 @@ namespace FACPelisVistas {
 			// tipoCBOX
 			// 
 			this->tipoCBOX->FormattingEnabled = true;
-			this->tipoCBOX->Location = System::Drawing::Point(383, 101);
+			this->tipoCBOX->Location = System::Drawing::Point(383, 139);
 			this->tipoCBOX->Name = L"tipoCBOX";
 			this->tipoCBOX->Size = System::Drawing::Size(315, 21);
 			this->tipoCBOX->TabIndex = 27;
@@ -361,33 +374,55 @@ namespace FACPelisVistas {
 			// rolCBOX
 			// 
 			this->rolCBOX->FormattingEnabled = true;
-			this->rolCBOX->Location = System::Drawing::Point(28, 183);
+			this->rolCBOX->Location = System::Drawing::Point(28, 221);
 			this->rolCBOX->Name = L"rolCBOX";
 			this->rolCBOX->Size = System::Drawing::Size(315, 21);
 			this->rolCBOX->TabIndex = 28;
 			// 
 			// dataGridView1
 			// 
+			this->dataGridView1->AllowUserToAddRows = false;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Location = System::Drawing::Point(12, 423);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->Size = System::Drawing::Size(743, 154);
 			this->dataGridView1->TabIndex = 29;
+			this->dataGridView1->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Registrar::dataGridView1_CellClick);
 			// 
 			// modificarTBX
 			// 
-			this->modificarTBX->Location = System::Drawing::Point(543, 379);
+			this->modificarTBX->Location = System::Drawing::Point(383, 380);
 			this->modificarTBX->Name = L"modificarTBX";
 			this->modificarTBX->Size = System::Drawing::Size(155, 22);
 			this->modificarTBX->TabIndex = 30;
 			this->modificarTBX->Text = L"Modificar";
 			this->modificarTBX->UseVisualStyleBackColor = true;
+			this->modificarTBX->Click += gcnew System::EventHandler(this, &Registrar::modificarTBX_Click);
+			// 
+			// idp
+			// 
+			this->idp->AutoSize = true;
+			this->idp->Location = System::Drawing::Point(31, 38);
+			this->idp->Name = L"idp";
+			this->idp->Size = System::Drawing::Size(76, 13);
+			this->idp->TabIndex = 31;
+			this->idp->Text = L"ID_PERSONA";
+			// 
+			// idpersonaTBX
+			// 
+			this->idpersonaTBX->Location = System::Drawing::Point(28, 54);
+			this->idpersonaTBX->Name = L"idpersonaTBX";
+			this->idpersonaTBX->Size = System::Drawing::Size(315, 20);
+			this->idpersonaTBX->TabIndex = 32;
+			this->idpersonaTBX->ReadOnly = true;
 			// 
 			// Registrar
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(767, 589);
+			this->Controls->Add(this->idpersonaTBX);
+			this->Controls->Add(this->idp);
 			this->Controls->Add(this->modificarTBX);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->rolCBOX);
@@ -425,8 +460,22 @@ namespace FACPelisVistas {
 #pragma endregion
 	private: System::Void regBTN_Click(System::Object^ sender, System::EventArgs^ e) {
 
+		if (dataGridView1->SelectedRows->Count > 0) {
+			MessageBox::Show("Termine de modificar");
+			return;
+		}
+
 		if (tipoCBOX->SelectedIndex == 0 || rolCBOX->SelectedIndex == 0) {
 			MessageBox::Show("Seleccione un tipo de documento y un rol validos");
+			return;
+		}
+
+		if (String::IsNullOrWhiteSpace(nomTBX->Text) || String::IsNullOrWhiteSpace(apeTBX->Text) ||
+			String::IsNullOrWhiteSpace(passTBX->Text) || String::IsNullOrWhiteSpace(emailTBX->Text) ||
+			String::IsNullOrWhiteSpace(telefTBX->Text) || String::IsNullOrWhiteSpace(NumDoTBX->Text) ||
+			String::IsNullOrWhiteSpace(calleTBX->Text) || String::IsNullOrWhiteSpace(numCTBX->Text) ||
+			String::IsNullOrWhiteSpace(ciudTBX->Text)) {
+			MessageBox::Show("Todos los campos deben estar completos");
 			return;
 		}
 
@@ -507,6 +556,86 @@ namespace FACPelisVistas {
 		}
 	}
 	private: System::Void atrBTN_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void modificarTBX_Click(System::Object^ sender, System::EventArgs^ e) {
+		try {
+			if (dataGridView1->SelectedRows->Count == 0) {
+				MessageBox::Show("Seleccione una persona de la tabla");
+				return;
+			}
+			if (tipoCBOX->SelectedIndex == 0 || rolCBOX->SelectedIndex == 0) {
+				MessageBox::Show("Seleccione un tipo de documento y un rol validos");
+				return;
+			}
+			if (String::IsNullOrWhiteSpace(nomTBX->Text) || String::IsNullOrWhiteSpace(apeTBX->Text) ||
+				String::IsNullOrWhiteSpace(passTBX->Text) || String::IsNullOrWhiteSpace(emailTBX->Text) ||
+				String::IsNullOrWhiteSpace(telefTBX->Text) || String::IsNullOrWhiteSpace(NumDoTBX->Text) ||
+				String::IsNullOrWhiteSpace(calleTBX->Text) || String::IsNullOrWhiteSpace(numCTBX->Text) ||
+				String::IsNullOrWhiteSpace(ciudTBX->Text)) {
+				MessageBox::Show("Todos los campos deben estar completos");
+				return;
+			}
+			int idPersona = Int32::Parse(idpersonaTBX->Text);
+			String^ rolActual = (String^)dataGridView1->SelectedRows[0]->Cells["Rol"]->Value;
+			if (String::Compare(rolActual, "ADMINISTRADOR", true) == 0 &&
+				String::Compare(rolActual, rolCBOX->Text, true) != 0) {
+				MessageBox::Show("No se puede cambiar el rol de un Administrador");
+				return;
+			}
+			std::string nombre = msclr::interop::marshal_as<std::string>(nomTBX->Text);
+			std::string apellido = msclr::interop::marshal_as<std::string>(apeTBX->Text);
+			std::string password = msclr::interop::marshal_as<std::string>(passTBX->Text);
+			std::string rol = msclr::interop::marshal_as<std::string>(rolCBOX->Text);
+			std::string numDoc = msclr::interop::marshal_as<std::string>(NumDoTBX->Text);
+			std::string tipoDoc = msclr::interop::marshal_as<std::string>(tipoCBOX->Text);
+			std::string correo = msclr::interop::marshal_as<std::string>(emailTBX->Text);
+			std::string telefono = msclr::interop::marshal_as<std::string>(telefTBX->Text);
+			std::string calle = msclr::interop::marshal_as<std::string>(calleTBX->Text);
+			std::string numero = msclr::interop::marshal_as<std::string>(numCTBX->Text);
+			std::string ciudad = msclr::interop::marshal_as<std::string>(ciudTBX->Text);
+
+			modificarPersonaCompleta(idPersona, nombre, apellido, password, rol,
+				numDoc, tipoDoc, correo, telefono, calle, numero, ciudad);
+			cargarAdministradores(dataGridView1);
+			MessageBox::Show("Persona modificada correctamente");
+			nomTBX->Text = L"";
+			apeTBX->Text = L"";
+			passTBX->Text = L"";
+			rolCBOX->SelectedIndex = 0;
+			NumDoTBX->Text = L"";
+			tipoCBOX->SelectedIndex = 0;
+			emailTBX->Text = L"";
+			telefTBX->Text = L"";
+			calleTBX->Text = L"";
+			numCTBX->Text = L"";
+			ciudTBX->Text = L"";
+			idpersonaTBX->Text = L"";
+			dataGridView1->ClearSelection();
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show(ex->Message);
+		}
+	}
+	private: System::Void numCTBX_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+		if (!Char::IsDigit(e->KeyChar) && e->KeyChar != 8) {
+			e->Handled = true;
+		}
+	}
+	private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+		if (e->RowIndex < 0) return;
+		DataGridViewRow^ row = dataGridView1->Rows[e->RowIndex];
+		idpersonaTBX->Text = row->Cells["ID"]->Value->ToString();
+		nomTBX->Text = row->Cells["Nombre"]->Value->ToString();
+		apeTBX->Text = row->Cells["Apellido"]->Value->ToString();
+		passTBX->Text = row->Cells["Password"]->Value->ToString();
+		rolCBOX->Text = row->Cells["Rol"]->Value->ToString();
+		emailTBX->Text = row->Cells["Email"]->Value->ToString();
+		telefTBX->Text = row->Cells["Telefono"]->Value->ToString();
+		NumDoTBX->Text = row->Cells["NumDoc"]->Value->ToString();
+		tipoCBOX->Text = row->Cells["TipoDoc"]->Value->ToString();
+		calleTBX->Text = row->Cells["Calle"]->Value->ToString();
+		numCTBX->Text = row->Cells["Numero"]->Value->ToString();
+		ciudTBX->Text = row->Cells["Ciudad"]->Value->ToString();
+	}
 
 	};
 }

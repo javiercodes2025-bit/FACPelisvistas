@@ -350,6 +350,8 @@ namespace FACPelisVistas {
 			this->table1->Name = L"table1";
 			this->table1->Size = System::Drawing::Size(823, 247);
 			this->table1->TabIndex = 21;
+
+			this->table1->AllowUserToAddRows = false;
 			// 
 			// emplBTN
 			// 
@@ -508,7 +510,6 @@ namespace FACPelisVistas {
 			this->Controls->Add(this->stockBTN);
 			this->Controls->Add(this->facBTN);
 
-			this->table1->AllowUserToAddRows = false;
 			this->Name = L"CLIENTES";
 			this->Text = L"CLIENTES";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->table1))->EndInit();
