@@ -112,7 +112,7 @@ void FACPelisvistas::FACTURACION::calcularBTN_Click(System::Object^ sender, Syst
 		String::IsNullOrWhiteSpace(precioTBX->Text) ||
 		String::IsNullOrWhiteSpace(stockTBX->Text)) return;
 	try {
-		double precio = Double::Parse(precioTBX->Text);
+		double precio = Double::Parse(precioTBX->Text, System::Globalization::CultureInfo::InvariantCulture);
 		int cantidad = Int32::Parse(cantidadTBX->Text);
 		int stock = Int32::Parse(stockTBX->Text);
 
@@ -129,7 +129,7 @@ void FACPelisvistas::FACTURACION::calcularBTN_Click(System::Object^ sender, Syst
 		double descuento = 0;
 
 		if (!String::IsNullOrWhiteSpace(descuentoXproducBTX->Text)) {
-			descProducto = Double::Parse(descuentoXproducBTX->Text);
+			descProducto = Double::Parse(descuentoXproducBTX->Text, System::Globalization::CultureInfo::InvariantCulture);
 			if (descProducto < 0 || descProducto > 100) {
 				MessageBox::Show("El descuentoXproducto debe estar entre 0 y 100");
 				return;
@@ -137,7 +137,7 @@ void FACPelisvistas::FACTURACION::calcularBTN_Click(System::Object^ sender, Syst
 		}
 
 		if (!String::IsNullOrWhiteSpace(descuentoGENERAL->Text)) {
-			descuento = Double::Parse(descuentoGENERAL->Text);
+			descuento = Double::Parse(descuentoGENERAL->Text, System::Globalization::CultureInfo::InvariantCulture);
 			if (descuento < 0 || descuento > 100) {
 				MessageBox::Show("El descuento debe estar entre 0 y 100");
 				return;
@@ -148,8 +148,8 @@ void FACPelisvistas::FACTURACION::calcularBTN_Click(System::Object^ sender, Syst
 		subtotal = subtotal - (subtotal * descProducto / 100.0);
 		double total = subtotal - (subtotal * descuento / 100.0);
 
-		subtotalTBX->Text = subtotal.ToString();
-		totalTBX->Text = total.ToString();
+		subtotalTBX->Text = subtotal.ToString("F2");
+		totalTBX->Text = total.ToString("F2");
 	}
 	catch (Exception^) {
 		MessageBox::Show("Ingrese un numero valido...");

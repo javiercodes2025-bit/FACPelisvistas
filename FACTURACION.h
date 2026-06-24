@@ -313,14 +313,14 @@ namespace FACPelisvistas {
 			// 
 			// descuentoGENERAL
 			// 
-			this->descuentoGENERAL->Location = System::Drawing::Point(606, 402);
+			this->descuentoGENERAL->Location = System::Drawing::Point(600, 348);
 			this->descuentoGENERAL->Name = L"descuentoGENERAL";
 			this->descuentoGENERAL->Size = System::Drawing::Size(255, 20);
 			this->descuentoGENERAL->TabIndex = 23;
 			// 
 			// calcularBTN
 			// 
-			this->calcularBTN->Location = System::Drawing::Point(692, 468);
+			this->calcularBTN->Location = System::Drawing::Point(686, 414);
 			this->calcularBTN->Name = L"calcularBTN";
 			this->calcularBTN->Size = System::Drawing::Size(99, 23);
 			this->calcularBTN->TabIndex = 29;
@@ -340,7 +340,7 @@ namespace FACPelisvistas {
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(606, 386);
+			this->label8->Location = System::Drawing::Point(600, 332);
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(74, 13);
 			this->label8->TabIndex = 24;
@@ -348,7 +348,7 @@ namespace FACPelisvistas {
 			// 
 			// subtotalTBX
 			// 
-			this->subtotalTBX->Location = System::Drawing::Point(606, 442);
+			this->subtotalTBX->Location = System::Drawing::Point(600, 388);
 			this->subtotalTBX->Name = L"subtotalTBX";
 			this->subtotalTBX->ReadOnly = true;
 			this->subtotalTBX->Size = System::Drawing::Size(255, 20);
@@ -357,7 +357,7 @@ namespace FACPelisvistas {
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(606, 426);
+			this->label9->Location = System::Drawing::Point(600, 372);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(64, 13);
 			this->label9->TabIndex = 26;
@@ -365,7 +365,7 @@ namespace FACPelisvistas {
 			// 
 			// totalTBX
 			// 
-			this->totalTBX->Location = System::Drawing::Point(609, 512);
+			this->totalTBX->Location = System::Drawing::Point(603, 458);
 			this->totalTBX->Name = L"totalTBX";
 			this->totalTBX->ReadOnly = true;
 			this->totalTBX->Size = System::Drawing::Size(255, 20);
@@ -374,7 +374,7 @@ namespace FACPelisvistas {
 			// label10
 			// 
 			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(609, 496);
+			this->label10->Location = System::Drawing::Point(603, 442);
 			this->label10->Name = L"label10";
 			this->label10->Size = System::Drawing::Size(42, 13);
 			this->label10->TabIndex = 28;
