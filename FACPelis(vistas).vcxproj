@@ -152,6 +152,7 @@
     <ClCompile Include="StockBDD.cpp" />
     <ClCompile Include="ProveedorBDD.cpp" />
     <ClCompile Include="RegistrarBDD.cpp" />
+    <ClCompile Include="VISTAempleadosFAC1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clientes.h">
@@ -176,6 +177,9 @@
     <ClInclude Include="Stock.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="VISTAempleadosFAC1.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Clientes.resx">
@@ -198,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Stock.resx">
       <DependentUpon>Stock.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTAempleadosFAC1.resx">
+      <DependentUpon>VISTAempleadosFAC1.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

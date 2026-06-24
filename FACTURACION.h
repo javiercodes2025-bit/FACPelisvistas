@@ -66,6 +66,17 @@ namespace FACPelisvistas {
 	private: System::Windows::Forms::Label^ label9;
 	private: System::Windows::Forms::TextBox^ totalTBX;
 	private: System::Windows::Forms::Label^ label10;
+	private: System::Windows::Forms::Button^ agregarBTN;
+
+	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::ComboBox^ metodopagoCBX;
+	private: System::Windows::Forms::Label^ label11;
+
+	private: bool modificarActivo;
+	private: int idVentaModificar;
+	private: int idPeliculaModificar;
+	private: int cantidadAnterior;
 
 
 
@@ -116,6 +127,11 @@ namespace FACPelisvistas {
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->totalTBX = (gcnew System::Windows::Forms::TextBox());
 			this->label10 = (gcnew System::Windows::Forms::Label());
+			this->agregarBTN = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->metodopagoCBX = (gcnew System::Windows::Forms::ComboBox());
+			this->label11 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -380,11 +396,67 @@ namespace FACPelisvistas {
 			this->label10->TabIndex = 28;
 			this->label10->Text = L"TOTAL";
 			// 
+			// agregarBTN
+			// 
+			this->agregarBTN->Location = System::Drawing::Point(707, 486);
+			this->agregarBTN->Name = L"agregarBTN";
+			this->agregarBTN->Size = System::Drawing::Size(128, 29);
+			this->agregarBTN->TabIndex = 30;
+			this->agregarBTN->Text = L"AGREGAR";
+			this->agregarBTN->UseVisualStyleBackColor = true;
+			this->agregarBTN->Click += gcnew System::EventHandler(this, &FACTURACION::agregarBTN_Click);
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(707, 521);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(128, 31);
+			this->button2->TabIndex = 31;
+			this->button2->Text = L"MODIFICAR";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &FACTURACION::modificarBTN_Click);
+			// 
+			// button3
+			// 
+			this->button3->Location = System::Drawing::Point(707, 558);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(128, 34);
+			this->button3->TabIndex = 32;
+			this->button3->Text = L"ELIMINAR";
+			this->button3->UseVisualStyleBackColor = true;
+			// 
+			// metodopagoCBX
+			// 
+			this->metodopagoCBX->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->metodopagoCBX->FormattingEnabled = true;
+			this->metodopagoCBX->Items->AddRange(gcnew cli::array< System::Object^  >(5) {
+				L"ELEGIR...", L"EFECTIVO", L"TARJETA", L"TRANSFERENCIA",
+					L"MERCADOPAGO"
+			});
+			this->metodopagoCBX->Location = System::Drawing::Point(38, 521);
+			this->metodopagoCBX->Name = L"metodopagoCBX";
+			this->metodopagoCBX->Size = System::Drawing::Size(246, 21);
+			this->metodopagoCBX->TabIndex = 33;
+			// 
+			// label11
+			// 
+			this->label11->AutoSize = true;
+			this->label11->Location = System::Drawing::Point(35, 501);
+			this->label11->Name = L"label11";
+			this->label11->Size = System::Drawing::Size(90, 13);
+			this->label11->TabIndex = 34;
+			this->label11->Text = L"METODO_PAGO";
+			// 
 			// FACTURACION
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(870, 754);
+			this->Controls->Add(this->label11);
+			this->Controls->Add(this->metodopagoCBX);
+			this->Controls->Add(this->button3);
+			this->Controls->Add(this->button2);
+			this->Controls->Add(this->agregarBTN);
 			this->Controls->Add(this->descuentoXproducBTX);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label5);
@@ -426,6 +498,8 @@ namespace FACPelisvistas {
 #pragma endregion
 	
 private: System::Void FACTURACION_Load(System::Object^ sender, System::EventArgs^ e) {
+		modificarActivo = false;
+		cargarVentas();
 	}
 	   private: System::Void proveedoresBTN_Click(System::Object^ sender, System::EventArgs^ e);
 
@@ -435,5 +509,8 @@ private: System::Void stockBTN_Click(System::Object^ sender, System::EventArgs^ 
 private: System::Void buscadorClienteBTN_Click(System::Object^ sender, System::EventArgs^ e);
 private: System::Void buscarProBTN_Click(System::Object^ sender, System::EventArgs^ e);
 private: System::Void calcularBTN_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void agregarBTN_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void cargarVentas();
+private: System::Void modificarBTN_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }
