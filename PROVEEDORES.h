@@ -64,10 +64,13 @@ namespace FACPelisVistas {
 
 
 	private: System::Windows::Forms::TextBox^ idTBX;
-	private: System::Windows::Forms::TextBox^ nomTBX;
-	private: System::Windows::Forms::TextBox^ domiTBX;
+	private: System::Windows::Forms::TextBox^ nombreTBX;
 
-	private: System::Windows::Forms::TextBox^ telTBX;
+	private: System::Windows::Forms::TextBox^ domicilioTBX;
+	private: System::Windows::Forms::TextBox^ telefonoTBX;
+
+
+
 	private: System::Windows::Forms::TextBox^ gmailTBX;
 
 
@@ -120,9 +123,9 @@ namespace FACPelisVistas {
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->idTBX = (gcnew System::Windows::Forms::TextBox());
-			this->nomTBX = (gcnew System::Windows::Forms::TextBox());
-			this->domiTBX = (gcnew System::Windows::Forms::TextBox());
-			this->telTBX = (gcnew System::Windows::Forms::TextBox());
+			this->nombreTBX = (gcnew System::Windows::Forms::TextBox());
+			this->domicilioTBX = (gcnew System::Windows::Forms::TextBox());
+			this->telefonoTBX = (gcnew System::Windows::Forms::TextBox());
 			this->gmailTBX = (gcnew System::Windows::Forms::TextBox());
 			this->table1 = (gcnew System::Windows::Forms::DataGridView());
 			this->emplBTN = (gcnew System::Windows::Forms::Button());
@@ -242,28 +245,28 @@ namespace FACPelisVistas {
 			this->idTBX->TabIndex = 14;
 			this->idTBX->TextChanged += gcnew System::EventHandler(this, &PROVEEDORES::idTBX_TextChanged);
 			// 
-			// nomTBX
+			// nombreTBX
 			// 
-			this->nomTBX->Location = System::Drawing::Point(39, 188);
-			this->nomTBX->Name = L"nomTBX";
-			this->nomTBX->Size = System::Drawing::Size(253, 20);
-			this->nomTBX->TabIndex = 15;
-			this->nomTBX->TextChanged += gcnew System::EventHandler(this, &PROVEEDORES::nomTBX_TextChanged);
+			this->nombreTBX->Location = System::Drawing::Point(39, 188);
+			this->nombreTBX->Name = L"nombreTBX";
+			this->nombreTBX->Size = System::Drawing::Size(253, 20);
+			this->nombreTBX->TabIndex = 15;
+			this->nombreTBX->TextChanged += gcnew System::EventHandler(this, &PROVEEDORES::nomTBX_TextChanged);
 			// 
-			// domiTBX
+			// domicilioTBX
 			// 
-			this->domiTBX->Location = System::Drawing::Point(310, 236);
-			this->domiTBX->Name = L"domiTBX";
-			this->domiTBX->Size = System::Drawing::Size(253, 20);
-			this->domiTBX->TabIndex = 16;
+			this->domicilioTBX->Location = System::Drawing::Point(310, 236);
+			this->domicilioTBX->Name = L"domicilioTBX";
+			this->domicilioTBX->Size = System::Drawing::Size(253, 20);
+			this->domicilioTBX->TabIndex = 16;
 			// 
-			// telTBX
+			// telefonoTBX
 			// 
-			this->telTBX->Location = System::Drawing::Point(39, 236);
-			this->telTBX->Name = L"telTBX";
-			this->telTBX->Size = System::Drawing::Size(253, 20);
-			this->telTBX->TabIndex = 17;
-			this->telTBX->TextChanged += gcnew System::EventHandler(this, &PROVEEDORES::telTBX_TextChanged);
+			this->telefonoTBX->Location = System::Drawing::Point(39, 236);
+			this->telefonoTBX->Name = L"telefonoTBX";
+			this->telefonoTBX->Size = System::Drawing::Size(253, 20);
+			this->telefonoTBX->TabIndex = 17;
+			this->telefonoTBX->TextChanged += gcnew System::EventHandler(this, &PROVEEDORES::telTBX_TextChanged);
 			// 
 			// gmailTBX
 			// 
@@ -298,9 +301,9 @@ namespace FACPelisVistas {
 			this->Controls->Add(this->emplBTN);
 			this->Controls->Add(this->table1);
 			this->Controls->Add(this->gmailTBX);
-			this->Controls->Add(this->telTBX);
-			this->Controls->Add(this->domiTBX);
-			this->Controls->Add(this->nomTBX);
+			this->Controls->Add(this->telefonoTBX);
+			this->Controls->Add(this->domicilioTBX);
+			this->Controls->Add(this->nombreTBX);
 			this->Controls->Add(this->idTBX);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);

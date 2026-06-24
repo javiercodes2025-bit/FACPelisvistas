@@ -1,5 +1,5 @@
 #pragma once
-//#include "pelisVar.h"
+#include "peliVAR.h"
 
 #include <msclr/marshal_cppstd.h>
 using namespace  std;
@@ -9,6 +9,16 @@ using namespace  std;
 #include <".h">
 #include <".h"> */
 
+
+void cargarPeliculas(System::Windows::Forms::DataGridView^ grid);
+void eliminarPelicula(int id);
+void ingresarPelicula(const std::string& titulo, int anio, int duracion,
+    double precio, int descuento, int cantidad);
+void actualizarPelicula(int id, const std::string& titulo, int anio, int duracion,
+    double precio, int descuento, int cantidad);
+
+ref class CLIENTES;
+ref class EMPLEADOS;
 
 namespace FACPelisVistas {
 
@@ -28,9 +38,8 @@ namespace FACPelisVistas {
 		STOCK(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: agregar c�digo de constructor aqu�
-			//
+			idSeleccionada = 0;
+			cargarPeliculas(this->table1);
 		}
 
 	protected:
@@ -60,9 +69,11 @@ namespace FACPelisVistas {
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::Label^ label6;
+	private: System::Windows::Forms::TextBox^ idpeliculaTBX;
 
-	private: System::Windows::Forms::TextBox^ idTBX;
-	private: System::Windows::Forms::TextBox^ tituTBX;
+
+	private: System::Windows::Forms::TextBox^ tituloTBX;
+
 	private: System::Windows::Forms::TextBox^ anioTBX;
 	private: System::Windows::Forms::TextBox^ duraTBX;
 	private: System::Windows::Forms::TextBox^ precTBX;
@@ -75,6 +86,9 @@ namespace FACPelisVistas {
 	private: System::Windows::Forms::DataGridView^ table1;
 	private: System::Windows::Forms::Button^ emplBTN;
 	private: System::Windows::Forms::TextBox^ canTBX;
+	private: System::Windows::Forms::Label^ label7;
+	private: System::Windows::Forms::TextBox^ decuentoXproductoTBX;
+	private: int idSeleccionada;
 
 
 
@@ -110,14 +124,16 @@ namespace FACPelisVistas {
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->idTBX = (gcnew System::Windows::Forms::TextBox());
-			this->tituTBX = (gcnew System::Windows::Forms::TextBox());
+			this->idpeliculaTBX = (gcnew System::Windows::Forms::TextBox());
+			this->tituloTBX = (gcnew System::Windows::Forms::TextBox());
 			this->anioTBX = (gcnew System::Windows::Forms::TextBox());
 			this->duraTBX = (gcnew System::Windows::Forms::TextBox());
 			this->precTBX = (gcnew System::Windows::Forms::TextBox());
 			this->table1 = (gcnew System::Windows::Forms::DataGridView());
 			this->emplBTN = (gcnew System::Windows::Forms::Button());
 			this->canTBX = (gcnew System::Windows::Forms::TextBox());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->decuentoXproductoTBX = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->table1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -184,7 +200,7 @@ namespace FACPelisVistas {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(36, 122);
+			this->label1->Location = System::Drawing::Point(36, 69);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(75, 13);
 			this->label1->TabIndex = 7;
@@ -204,9 +220,9 @@ namespace FACPelisVistas {
 			this->label3->AutoSize = true;
 			this->label3->Location = System::Drawing::Point(36, 220);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(30, 13);
+			this->label3->Size = System::Drawing::Size(33, 13);
 			this->label3->TabIndex = 9;
-			this->label3->Text = L"A�O";
+			this->label3->Text = L"ANIO";
 			// 
 			// label4
 			// 
@@ -220,7 +236,7 @@ namespace FACPelisVistas {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(307, 181);
+			this->label5->Location = System::Drawing::Point(307, 174);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(47, 13);
 			this->label5->TabIndex = 11;
@@ -229,27 +245,29 @@ namespace FACPelisVistas {
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(307, 227);
+			this->label6->Location = System::Drawing::Point(307, 220);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(62, 13);
 			this->label6->TabIndex = 12;
 			this->label6->Text = L"CANTIDAD";
 			// 
-			// idTBX
+			// idpeliculaTBX
 			// 
-			this->idTBX->Location = System::Drawing::Point(39, 139);
-			this->idTBX->Name = L"idTBX";
-			this->idTBX->Size = System::Drawing::Size(253, 20);
-			this->idTBX->TabIndex = 14;
-			this->idTBX->TextChanged += gcnew System::EventHandler(this, &STOCK::idTBX_TextChanged);
+			this->idpeliculaTBX->Location = System::Drawing::Point(39, 86);
+			this->idpeliculaTBX->Name = L"idpeliculaTBX";
+			this->idpeliculaTBX->ReadOnly = true;
+			this->idpeliculaTBX->Size = System::Drawing::Size(253, 20);
+			this->idpeliculaTBX->TabIndex = 14;
+			this->idpeliculaTBX->TextChanged += gcnew System::EventHandler(this, &STOCK::idTBX_TextChanged);
 			// 
-			// tituTBX
+			// tituloTBX
 			// 
-			this->tituTBX->Location = System::Drawing::Point(39, 197);
-			this->tituTBX->Name = L"tituTBX";
-			this->tituTBX->Size = System::Drawing::Size(253, 20);
-			this->tituTBX->TabIndex = 15;
-			this->tituTBX->TextChanged += gcnew System::EventHandler(this, &STOCK::tituTBX_TextChanged);
+			this->tituloTBX->Location = System::Drawing::Point(39, 197);
+			this->tituloTBX->Name = L"tituloTBX";
+			this->tituloTBX->Size = System::Drawing::Size(253, 20);
+			this->tituloTBX->TabIndex = 15;
+			this->tituloTBX->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &STOCK::tituloTBX_KeyPress);
+			this->tituloTBX->TextChanged += gcnew System::EventHandler(this, &STOCK::tituTBX_TextChanged);
 			// 
 			// anioTBX
 			// 
@@ -257,6 +275,7 @@ namespace FACPelisVistas {
 			this->anioTBX->Name = L"anioTBX";
 			this->anioTBX->Size = System::Drawing::Size(253, 20);
 			this->anioTBX->TabIndex = 16;
+			this->anioTBX->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &STOCK::anioTBX_KeyPress);
 			this->anioTBX->TextChanged += gcnew System::EventHandler(this, &STOCK::anioTBX_TextChanged);
 			// 
 			// duraTBX
@@ -265,23 +284,27 @@ namespace FACPelisVistas {
 			this->duraTBX->Name = L"duraTBX";
 			this->duraTBX->Size = System::Drawing::Size(253, 20);
 			this->duraTBX->TabIndex = 17;
+			this->duraTBX->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &STOCK::duraTBX_KeyPress);
 			this->duraTBX->TextChanged += gcnew System::EventHandler(this, &STOCK::duraTBX_TextChanged);
 			// 
 			// precTBX
 			// 
-			this->precTBX->Location = System::Drawing::Point(310, 197);
+			this->precTBX->Location = System::Drawing::Point(310, 190);
 			this->precTBX->Name = L"precTBX";
 			this->precTBX->Size = System::Drawing::Size(253, 20);
 			this->precTBX->TabIndex = 18;
+			this->precTBX->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &STOCK::precTBX_KeyPress);
 			this->precTBX->TextChanged += gcnew System::EventHandler(this, &STOCK::precTBX_TextChanged);
 			// 
 			// table1
 			// 
+			this->table1->AllowUserToAddRows = false;
 			this->table1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->table1->Location = System::Drawing::Point(12, 349);
 			this->table1->Name = L"table1";
 			this->table1->Size = System::Drawing::Size(762, 221);
 			this->table1->TabIndex = 21;
+			this->table1->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &STOCK::table1_CellClick);
 			// 
 			// emplBTN
 			// 
@@ -295,25 +318,45 @@ namespace FACPelisVistas {
 			// 
 			// canTBX
 			// 
-			this->canTBX->Location = System::Drawing::Point(310, 243);
+			this->canTBX->Location = System::Drawing::Point(310, 236);
 			this->canTBX->Name = L"canTBX";
 			this->canTBX->Size = System::Drawing::Size(253, 20);
 			this->canTBX->TabIndex = 19;
+			this->canTBX->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &STOCK::canTBX_KeyPress);
 			this->canTBX->TextChanged += gcnew System::EventHandler(this, &STOCK::canTBX_TextChanged);
+			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(307, 259);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(101, 13);
+			this->label7->TabIndex = 24;
+			this->label7->Text = L"decuentoXproducto";
+			// 
+			// decuentoXproductoTBX
+			// 
+			this->decuentoXproductoTBX->Location = System::Drawing::Point(310, 277);
+			this->decuentoXproductoTBX->Name = L"decuentoXproductoTBX";
+			this->decuentoXproductoTBX->Size = System::Drawing::Size(253, 20);
+			this->decuentoXproductoTBX->TabIndex = 25;
+			this->decuentoXproductoTBX->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &STOCK::decuentoXproductoTBX_KeyPress);
 			// 
 			// STOCK
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(786, 582);
+			this->Controls->Add(this->decuentoXproductoTBX);
+			this->Controls->Add(this->label7);
 			this->Controls->Add(this->emplBTN);
 			this->Controls->Add(this->table1);
 			this->Controls->Add(this->canTBX);
 			this->Controls->Add(this->precTBX);
 			this->Controls->Add(this->duraTBX);
 			this->Controls->Add(this->anioTBX);
-			this->Controls->Add(this->tituTBX);
-			this->Controls->Add(this->idTBX);
+			this->Controls->Add(this->tituloTBX);
+			this->Controls->Add(this->idpeliculaTBX);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
@@ -337,21 +380,171 @@ namespace FACPelisVistas {
 	private: System::Void facBTN_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 
-	private: System::Void cliBTN_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
+	private: System::Void cliBTN_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void provBTN_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void emplBTN_Click(System::Object^ sender, System::EventArgs^ e) {
-
-	}
+	private: System::Void emplBTN_Click(System::Object^ sender, System::EventArgs^ e);
 
 
 	private: System::Void ingrBTN_Click(System::Object^ sender, System::EventArgs^ e) {
+		try {
+			std::string titulo = msclr::interop::marshal_as<std::string>(tituloTBX->Text);
+			if (titulo.empty()) {
+				MessageBox::Show("Ingrese un titulo");
+				return;
+			}
 
+			int anio = 0;
+			if (!String::IsNullOrWhiteSpace(anioTBX->Text))
+				anio = Int32::Parse(anioTBX->Text);
+
+			if (anio != 0 && (anio < 1800 || anio > 2026)) {
+				MessageBox::Show("El anio debe estar entre 1800 y 2026");
+				return;
+			}
+
+			int duracion = 0;
+			if (!String::IsNullOrWhiteSpace(duraTBX->Text))
+				duracion = Int32::Parse(duraTBX->Text);
+
+			if (duracion <= 0) {
+				MessageBox::Show("La duracion debe ser mayor a 0");
+				return;
+			}
+
+			double precio = 0.0;
+			if (!String::IsNullOrWhiteSpace(precTBX->Text))
+				precio = Double::Parse(precTBX->Text);
+
+			if (precio < 0) {
+				MessageBox::Show("El precio no puede ser negativo");
+				return;
+			}
+
+			int descuento = 0;
+			if (!String::IsNullOrWhiteSpace(decuentoXproductoTBX->Text))
+				descuento = Int32::Parse(decuentoXproductoTBX->Text);
+
+			if (descuento < 0 || descuento > 100) {
+				MessageBox::Show("El descuento debe estar entre 0 y 100");
+				return;
+			}
+
+			int cantidad = 0;
+			if (!String::IsNullOrWhiteSpace(canTBX->Text))
+				cantidad = Int32::Parse(canTBX->Text);
+
+			ingresarPelicula(titulo, anio, duracion, precio, descuento, cantidad);
+			MessageBox::Show("Pelicula ingresada correctamente");
+
+			idSeleccionada = 0;
+			idpeliculaTBX->Text = L"";
+			tituloTBX->Text = L"";
+			anioTBX->Text = L"";
+			duraTBX->Text = L"";
+			precTBX->Text = L"";
+			decuentoXproductoTBX->Text = L"";
+			canTBX->Text = L"";
+
+			cargarPeliculas(this->table1);
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show(ex->Message);
+		}
 	}
 	private: System::Void eliBTN_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (idSeleccionada == 0) {
+			MessageBox::Show("Seleccione una pelicula en la tabla");
+			return;
+		}
+
+		System::Windows::Forms::DialogResult res = MessageBox::Show("Eliminar esta pelicula?", "Confirmar",
+			MessageBoxButtons::YesNo, MessageBoxIcon::Warning);
+		if (res == System::Windows::Forms::DialogResult::Yes) {
+			eliminarPelicula(idSeleccionada);
+			
+
+			idSeleccionada = 0;
+			idpeliculaTBX->Text = L"";
+			tituloTBX->Text = L"";
+			anioTBX->Text = L"";
+			duraTBX->Text = L"";
+			precTBX->Text = L"";
+			decuentoXproductoTBX->Text = L"";
+			canTBX->Text = L"";
+
+			cargarPeliculas(this->table1);
+		}
 	}
 	private: System::Void modiBTN_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (idSeleccionada == 0) {
+			MessageBox::Show("Seleccione una pelicula en la tabla");
+			return;
+		}
+
+		try {
+			std::string titulo = msclr::interop::marshal_as<std::string>(tituloTBX->Text);
+			int anio = String::IsNullOrWhiteSpace(anioTBX->Text) ? 0 : Int32::Parse(anioTBX->Text);
+
+			if (anio != 0 && (anio < 1800 || anio > 2026)) {
+				MessageBox::Show("El anio debe estar entre 1800 y 2026");
+				return;
+			}
+
+			int duracion = String::IsNullOrWhiteSpace(duraTBX->Text) ? 0 : Int32::Parse(duraTBX->Text);
+
+			if (duracion <= 0) {
+				MessageBox::Show("La duracion debe ser mayor a 0");
+				return;
+			}
+
+			double precio = String::IsNullOrWhiteSpace(precTBX->Text) ? 0.0 : Double::Parse(precTBX->Text);
+
+			if (precio < 0) {
+				MessageBox::Show("El precio no puede ser negativo");
+				return;
+			}
+
+			int descuento = String::IsNullOrWhiteSpace(decuentoXproductoTBX->Text) ? 0 : Int32::Parse(decuentoXproductoTBX->Text);
+
+			if (descuento < 0 || descuento > 100) {
+				MessageBox::Show("El descuento debe estar entre 0 y 100");
+				return;
+			}
+
+			int cantidad = String::IsNullOrWhiteSpace(canTBX->Text) ? 0 : Int32::Parse(canTBX->Text);
+
+			actualizarPelicula(idSeleccionada, titulo, anio, duracion, precio, descuento, cantidad);
+			
+
+			idSeleccionada = 0;
+			idpeliculaTBX->Text = L"";
+			tituloTBX->Text = L"";
+			anioTBX->Text = L"";
+			duraTBX->Text = L"";
+			precTBX->Text = L"";
+			decuentoXproductoTBX->Text = L"";
+			canTBX->Text = L"";
+
+			cargarPeliculas(this->table1);
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show(ex->Message);
+		}
+	}
+	private: System::Void table1_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+		if (e->RowIndex < 0) return;
+
+		DataGridViewRow^ row = this->table1->Rows[e->RowIndex];
+
+		idSeleccionada = (int)row->Cells["ID"]->Value;
+		idpeliculaTBX->Text = idSeleccionada.ToString();
+		tituloTBX->Text = row->Cells["Titulo"]->Value != nullptr ? row->Cells["Titulo"]->Value->ToString() : L"";
+		anioTBX->Text = row->Cells["Anio"]->Value != nullptr ? row->Cells["Anio"]->Value->ToString() : L"";
+		duraTBX->Text = row->Cells["Duracion"]->Value != nullptr ? row->Cells["Duracion"]->Value->ToString() : L"";
+		precTBX->Text = row->Cells["Precio"]->Value != nullptr ? row->Cells["Precio"]->Value->ToString() : L"";
+		decuentoXproductoTBX->Text = row->Cells["Descuento"]->Value != nullptr ? row->Cells["Descuento"]->Value->ToString() : L"";
+		canTBX->Text = row->Cells["Cantidad"]->Value != nullptr ? row->Cells["Cantidad"]->Value->ToString() : L"";
 	}
 
 
@@ -369,9 +562,39 @@ namespace FACPelisVistas {
 	}
 	private: System::Void canTBX_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
+	private: System::Void decuentoXproductoTBX_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+		if (!Char::IsDigit(e->KeyChar) && e->KeyChar != 8) {
+			e->Handled = true;
+		}
+	}
+	private: System::Void precTBX_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+		if (!Char::IsDigit(e->KeyChar) && e->KeyChar != '.' && e->KeyChar != 8) {
+			e->Handled = true;
+		}
+	}
+	private: System::Void anioTBX_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+		if (!Char::IsDigit(e->KeyChar) && e->KeyChar != 8) {
+			e->Handled = true;
+		}
+	}
+	private: System::Void duraTBX_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+		if (!Char::IsDigit(e->KeyChar) && e->KeyChar != 8) {
+			e->Handled = true;
+		}
+	}
+	private: System::Void tituloTBX_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+		if (!Char::IsLetterOrDigit(e->KeyChar) && e->KeyChar != ' ' && e->KeyChar != 8) {
+			e->Handled = true;
+		}
+	}
+	private: System::Void canTBX_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+		if (!Char::IsDigit(e->KeyChar) && e->KeyChar != 8) {
+			e->Handled = true;
+		}
+	}
 
 
-	};
+};
 
 
 

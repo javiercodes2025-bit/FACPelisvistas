@@ -4,6 +4,7 @@
 #include <msclr/marshal_cppstd.h>
 using namespace  std;
 ref class EMPLEADOS;
+ref class STOCK;
 void cargarClientes(System::Windows::Forms::DataGridView^ grid);
 void eliminarCliente(int idPersona);
 void modificarCliente(int idPersona,
@@ -518,8 +519,7 @@ namespace FACPelisVistas {
 	private: System::Void facBTN_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 
-	private: System::Void stockBTN_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
+	private: System::Void stockBTN_Click(System::Object^ sender, System::EventArgs^ e);
 
 	private: System::Void provBTN_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
